@@ -47,9 +47,6 @@ public class WizardGreenProj : MonoBehaviour
         }
     }
 
-    void DestroyProj()
-    {
-        Destroy(this.gameObject);
-    }
+
 
 }

@@ -83,9 +83,11 @@ public class Grenade : MonoBehaviour
         }
     }
 
+    float tLerp;
     void RotateGrenade()
     {
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(0, 360, 2));
+        tLerp += 0.5f * Time.deltaTime;
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(0, 360, tLerp));
     }
 
     void StopAndExplode()

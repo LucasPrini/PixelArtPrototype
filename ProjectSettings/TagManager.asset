@@ -8,6 +8,7 @@ TagManager:
   - EnemyDamageCollider
   - Enemy
   - Shield
+  - PassThroughTerrain
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Ground
   - Enemy
   - Player
-  - 
-  - 
+  - PassThroughTerrain
+  - BackUpCollider
   - 
   - 
   - 
