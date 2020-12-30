@@ -6,17 +6,34 @@ public class BackupCollider : MonoBehaviour
 {
     Collider2D _backupCollider;
 
+
+
+
+    [SerializeField] Collider2D _feetCollider;
+
     private void Awake()
     {
         _backupCollider = GetComponent<Collider2D>();
+
+
+    }
+
+    private void Update()
+    {
+
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+
+        /*if (other.gameObject.tag == "Enemy")
         {
             Collider2D enemyCollider = other.gameObject.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(_backupCollider, enemyCollider, true);
-        }
+        }*/
+
+
 
     }
+
+
 }
