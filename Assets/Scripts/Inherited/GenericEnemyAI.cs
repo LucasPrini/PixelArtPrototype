@@ -57,7 +57,7 @@ public class GenericEnemyAI : MonoBehaviour
                 state = State.attackingTarget;
             }
         }
-        else
+        else if (!isAttacking)
         {
             state = State.roaming;
         }

@@ -27,6 +27,8 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] KeyCode _dashKey;
     [SerializeField] AudioClip _dashSound;
     [SerializeField] GameObject _dashEffectPrefab;
+    [SerializeField] float _dashCooldown;
+    [SerializeField] bool _isDashInCD;
 
     public bool isDashing;
 
@@ -151,7 +153,7 @@ public class PlayerActions : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetKeyDown(_dashKey))
+        if (Input.GetKeyDown(_dashKey) && _isDashInCD == false)
         {
             StartCoroutine(DashRoutine());
         }
@@ -159,6 +161,7 @@ public class PlayerActions : MonoBehaviour
 
     IEnumerator DashRoutine()
     {
+        _isDashInCD = true;
         _mainCollider2D.enabled = false;
         isDashing = true;
         _playerController.canMove = true;
@@ -174,10 +177,11 @@ public class PlayerActions : MonoBehaviour
         isDashing = false;
         _playerController.playerControlEnabled = true;
         _playerController.playerRigidbody2D.velocity = new Vector2(0, -3f);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
 
         _mainCollider2D.enabled = true;
+        _isDashInCD = false;
 
 
     }

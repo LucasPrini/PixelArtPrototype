@@ -96,7 +96,7 @@ public class EnemyWizardAI : GenericEnemyAI
             isCoroutineOn = true;
             isAttacking = true;
             canEnemyMove = false;
-            yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
+            yield return new WaitForSeconds(Random.Range(0.5f, 1f));
             animator.SetTrigger("Attack");
             yield return new WaitForSeconds(1);
             canEnemyMove = true;

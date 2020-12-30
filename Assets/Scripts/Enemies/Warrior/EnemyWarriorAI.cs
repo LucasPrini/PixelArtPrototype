@@ -65,6 +65,10 @@ public class EnemyWarriorAI : GenericEnemyAI
 
                 animator.SetBool("isMoving", false);
                 AttackPlayer();
+                if (!isAttacking)
+                {
+                    FaceTarget(target);
+                }
                 break;
         }
     }
@@ -111,12 +115,10 @@ public class EnemyWarriorAI : GenericEnemyAI
 
             case State.attackingTarget:
 
-                if (!isAttacking)
-                {
-                    FaceTarget(target);
-                }
+
                 animator.SetBool("isMoving", false);
                 AttackPlayer();
+
                 break;
         }
 
@@ -144,7 +146,7 @@ public class EnemyWarriorAI : GenericEnemyAI
         enemyRigidbody2D.velocity = Vector3.zero;
         canEnemyMove = false;
         FaceTarget(target);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         if (targetDistance < _warriorStats.attackRange)
         {
             isAttacking = true;
@@ -154,14 +156,14 @@ public class EnemyWarriorAI : GenericEnemyAI
             animator.SetTrigger("Charge");
 
             //ChargeOnPlayer();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             //canEnemyMove = false;
             enemyRigidbody2D.velocity = Vector3.zero;
 
             yield return new WaitForSeconds(1f);
         }
 
-        canEnemyMove = true;
+        //canEnemyMove = true;
         isAttacking = false;
         isAttackRountineOn = false;
     }

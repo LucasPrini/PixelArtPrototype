@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerDamager : MonoBehaviour
 {
     PlayerController _playerController;
+    ComboPointsManager _comboPointsManager;
 
     PlayerActions _playerActions;
 
@@ -26,6 +27,7 @@ public class PlayerDamager : MonoBehaviour
 
     private void Awake()
     {
+        _comboPointsManager = GameObject.Find("GameManager").GetComponent<ComboPointsManager>();
         _playerActions = GetComponent<PlayerActions>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -52,6 +54,7 @@ public class PlayerDamager : MonoBehaviour
             _playerStats.currentHealth = _playerStats.currentHealth - damageTaken;
             _audioSource.PlayOneShot(_hurtSound);
             _cinemaMachineCameraScript.ShakeScreen(5f, 0.2f);
+            _comboPointsManager.playerComboPoints = 0;
             StartCoroutine(BlinkWhenHurt());
         }
 

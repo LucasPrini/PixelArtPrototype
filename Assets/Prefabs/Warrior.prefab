@@ -471,7 +471,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2304
   canEnemyMove: 0
   isAttacking: 0
   enemyCollider2D: {fileID: 0}
@@ -654,7 +654,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.717808, y: 2.3233166}
+  m_Size: {x: 14.717808, y: 1.6319866}
   m_EdgeRadius: 0
 --- !u!114 &3079396455108254817
 MonoBehaviour:

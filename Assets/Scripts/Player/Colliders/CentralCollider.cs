@@ -17,11 +17,12 @@ public class CentralCollider : MonoBehaviour
 
     private void Update()
     {
+        // _playerContraints.IsGrounded() 
         if (Input.GetKeyDown(KeyCode.S))
         {
             _feetCollider.enabled = false;
         }
-        if (_playerContraints.IsGrounded() && _isPassingThroughTerrain == false)
+        if (_isPassingThroughTerrain == false)
         {
             _feetCollider.enabled = true;
         }

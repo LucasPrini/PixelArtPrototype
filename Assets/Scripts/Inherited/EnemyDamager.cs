@@ -7,6 +7,8 @@ public class EnemyDamager : MonoBehaviour
 
     public Collider2D _enemyDamageCollider;
     public GameObject floatingDamagePrefab;
+    ComboPointsManager _comboPointsManager;
+    [SerializeField] GameObject _comboParticleEmmiter;
 
     public AudioSource audioSource;
 
@@ -25,6 +27,7 @@ public class EnemyDamager : MonoBehaviour
 
     private void Awake()
     {
+        _comboPointsManager = GameObject.Find("GameManager").GetComponent<ComboPointsManager>();
         enemyCollider2D = GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
 
@@ -53,6 +56,10 @@ public class EnemyDamager : MonoBehaviour
         {
             floatingDamage.GetComponent<FloatingDamage>().textMesh.color = Color.red;
             floatingDamage.GetComponent<FloatingDamage>().textMesh.fontSize = 3;
+            _comboPointsManager.playerComboPoints += 10f;
+            Instantiate(_comboParticleEmmiter, transform.position, Quaternion.identity);
+
+
         }
         if (enemyCurrentHealth <= 0)
         {
