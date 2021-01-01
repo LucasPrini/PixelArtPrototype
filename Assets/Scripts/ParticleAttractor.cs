@@ -11,6 +11,8 @@ public class ParticleAttractor : MonoBehaviour
 
     void Awake()
     {
+        destination = GameObject.Find("Player").transform;
+
         myParticleSystem = this.GetComponent<ParticleSystem>();
 
         if (myParticleSystem == null)
@@ -53,4 +55,6 @@ public class ParticleAttractor : MonoBehaviour
         yield return new WaitForSeconds(2f);
         goToTarget = true;
     }
+
+
 }

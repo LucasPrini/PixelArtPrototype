@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Shield
   - PassThroughTerrain
+  - GameManager
+  - MainCanvas
   layers:
   - Default
   - TransparentFX

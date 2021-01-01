@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 655841366098253144}
   - component: {fileID: 655841366098253145}
   - component: {fileID: 655841366098253146}
+  - component: {fileID: -8270683250918057217}
   m_Layer: 0
   m_Name: ComboPointsParticles
   m_TagString: Untagged
@@ -976,7 +977,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 10
+        scalar: 2
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1026,8 +1027,8 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 1
-      repeatInterval: 0.01
+      cycleCount: 5
+      repeatInterval: 0.1
       probability: 1
   SizeModule:
     enabled: 0
@@ -4883,5 +4884,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3555a67a6f47a84fa2b906cf2978315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 235396489120003305, guid: 6e0b36ec4ccf61446b0b19f9607aba64, type: 3}
+  destination: {fileID: 0}
   myParticleSystem: {fileID: 0}
+--- !u!114 &-8270683250918057217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655841366098253147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69dc4bbf65fe0ae47bd287ff492fb108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeToDestroy: 4

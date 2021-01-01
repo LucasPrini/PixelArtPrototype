@@ -1,17 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
     PlayerController _playerController;
+    GameObject _mainCanvas;
+
+    ComboPointsManager _comboPointsManager;
     [SerializeField] CinemachineCamera _cinemachineCamera;
     PlayerStats _playerStats;
     [SerializeField] AudioClip _shootClip;
     [SerializeField] AudioClip _criticalShotClip;
     [SerializeField] float _comboTimer;
     [SerializeField] bool _canCombo = true;
+
+    [SerializeField] float _pointsToIncreaseCrit;
+    public float comboPointsCounter;
+
+    [SerializeField] GameObject _increasedCritTextPrefab;
+    [SerializeField] AudioClip _critIncreaseSound;
+
+    [SerializeField] GameObject _critChanceTextOB;
+    TextMeshProUGUI _critChanceText;
     [SerializeField] int _shotsToCrits;
+    public bool isCriticalHit;
+
+    [SerializeField] float _criticalChance = 0;
     AudioSource _audioSource;
     [SerializeField] GameObject _laserPrefab;
     [SerializeField] GameObject _criticalShotPrefab;
@@ -34,11 +50,14 @@ public class PlayerActions : MonoBehaviour
 
     private void Awake()
     {
+        _comboPointsManager = GameObject.FindWithTag("GameManager").GetComponent<ComboPointsManager>();
         _mainCollider2D = GetComponent<Collider2D>();
         _playerStats = GetComponent<PlayerStats>();
         _playerController = GetComponent<PlayerController>();
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        _critChanceText = _critChanceTextOB.GetComponent<TextMeshProUGUI>();
+        _mainCanvas = GameObject.FindWithTag("MainCanvas");
 
     }
     // Start is called before the first frame update
@@ -59,6 +78,8 @@ public class PlayerActions : MonoBehaviour
             Shoot();
         }
 
+        CriticalHitCalculator();
+        IncreaseCriticalChance();
         ThrowGrenade();
         Dash();
     }
@@ -79,6 +100,7 @@ public class PlayerActions : MonoBehaviour
         {
             StartCoroutine(ShootingRoutine());
         }
+
     }
 
     IEnumerator ShootingRoutine()
@@ -87,21 +109,28 @@ public class PlayerActions : MonoBehaviour
 
         _playerController.canMove = false;
         _playerController.FaceMouseDirection();
-        _comboCounter += 1;
-        if (_comboCounter >= _shotsToCrits)
+
+        if (isCriticalHit)
         {
+
             _animator.SetTrigger("CriticalShot");
         }
-        else
+        else if (!isCriticalHit)
         {
+
             _animator.SetTrigger("Shoot");
+
+
         }
 
-
-        if (_comboCounter >= _shotsToCrits)
+        _comboCounter += 1;
+        if (_comboCounter > _shotsToCrits)
         {
             _comboCounter = 0;
         }
+
+
+
 
         yield return new WaitForSeconds(0.5f);
 
@@ -110,7 +139,59 @@ public class PlayerActions : MonoBehaviour
 
     }
 
+    void CriticalHitCalculator()
+    {
+        if (_comboCounter >= _shotsToCrits)
+        {
+            isCriticalHit = true;
 
+        }
+        else
+        {
+            if (Random.Range(0, 100) < _criticalChance)
+            {
+                isCriticalHit = true;
+
+            }
+            else
+            {
+                isCriticalHit = false;
+
+            }
+        }
+
+
+
+    }
+
+    void IncreaseCriticalChance()
+    {
+
+        if (_comboPointsManager.playerComboPoints <= 0)
+        {
+            _criticalChance = 0;
+        }
+
+        if (comboPointsCounter >= _pointsToIncreaseCrit)
+        {
+            _criticalChance += 10f;
+            Vector3 critTextOffSet = new Vector3(0, 200f, 0);
+            var critText = Instantiate(_increasedCritTextPrefab, _mainCanvas.transform.position + critTextOffSet, Quaternion.identity, _mainCanvas.transform);
+            critText.transform.parent = _mainCanvas.transform;
+            _audioSource.PlayOneShot(_critIncreaseSound);
+        }
+
+        if (comboPointsCounter >= _pointsToIncreaseCrit)
+        {
+            comboPointsCounter = 0;
+        }
+
+
+
+        _critChanceText.SetText("Critical Chance: " + _criticalChance + "%");
+
+
+    }
 
 
 
@@ -146,7 +227,7 @@ public class PlayerActions : MonoBehaviour
         if (Input.GetKeyDown(_grenadeKey))
         {
             _animator.SetTrigger("throwGrenade");
-            Instantiate(_granadePrefab, _grenadeSpawnPos.position, Quaternion.identity);
+            Instantiate(_granadePrefab, _grenadeSpawnPos.position, Quaternion.identity, _mainCanvas.transform);
 
         }
     }
