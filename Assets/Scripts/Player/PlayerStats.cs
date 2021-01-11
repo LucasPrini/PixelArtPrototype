@@ -5,4 +5,9 @@ using UnityEngine;
 public class PlayerStats : GenericStats
 {
     public float dashForce;
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
 }

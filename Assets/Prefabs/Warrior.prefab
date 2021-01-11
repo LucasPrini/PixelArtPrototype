@@ -590,6 +590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyDamageCollider: {fileID: 0}
   floatingDamagePrefab: {fileID: 6220740808529765774, guid: 31eba7cb5707a14498870cf173eae3e1, type: 3}
+  _comboParticleEmmiter: {fileID: 0}
   audioSource: {fileID: 0}
   enemyCollider2D: {fileID: 0}
   spriteRenderer: {fileID: 0}

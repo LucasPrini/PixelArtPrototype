@@ -79,6 +79,15 @@ public class GenericEnemyAI : MonoBehaviour
 
     }
 
+    public bool CheckEdge()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(_edgeChecker.position, Vector3.down, 0.3f, groundLayerMask);
+        Debug.DrawRay(_edgeChecker.position, Vector3.down * 0.3f, Color.red);
+        return hit.collider == null;
+
+
+    }
+
 
 
     public void TurnOnObstacle(Collider2D collider2D, LayerMask layerMask)
@@ -98,14 +107,7 @@ public class GenericEnemyAI : MonoBehaviour
             return hit.collider != null;
         }
 
-        bool CheckEdge()
-        {
-            RaycastHit2D hit = Physics2D.Raycast(_edgeChecker.position, Vector3.down, 0.3f, groundLayerMask);
-            Debug.DrawRay(_edgeChecker.position, Vector3.down * 0.3f, Color.red);
-            return hit.collider == null;
 
-
-        }
 
         if (CheckEdge())
         {

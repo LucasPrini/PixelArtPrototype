@@ -39,12 +39,20 @@ public class WizardGreenProj : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "PlayerShield")
+        {
+
+            Destroy(this.gameObject);
+
+        }
+        else if (other.tag == "Player")
         {
             Debug.Log("hit");
             other.GetComponent<PlayerDamager>().TakeDamage(damage, this.transform);
             Destroy(this.gameObject);
         }
+
+
     }
 
 

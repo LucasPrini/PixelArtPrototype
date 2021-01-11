@@ -21,6 +21,7 @@ public class PlayerDamager : MonoBehaviour
 
     SpriteRenderer _spriteRenderer;
     [SerializeField] float _hurtKnockback;
+    public bool isPlayerShielded = false;
 
     float transparency;
 
@@ -55,6 +56,8 @@ public class PlayerDamager : MonoBehaviour
             _audioSource.PlayOneShot(_hurtSound);
             _cinemaMachineCameraScript.ShakeScreen(5f, 0.2f);
             _comboPointsManager.playerComboPoints = 0;
+            _playerActions.comboCounter = 0;
+            _playerActions.comboPointsCounter = 0;
             StartCoroutine(BlinkWhenHurt());
         }
 
@@ -84,9 +87,9 @@ public class PlayerDamager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && isPlayerShielded == false)
         {
-            TakeDamage(5, other.gameObject.transform);
+            TakeDamage(1, other.gameObject.transform);
         }
     }
 }

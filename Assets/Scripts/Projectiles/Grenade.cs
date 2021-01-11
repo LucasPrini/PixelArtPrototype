@@ -10,6 +10,7 @@ public class Grenade : MonoBehaviour
 
     [SerializeField] int _grenadeDamage;
     [SerializeField] float _rollingSpeed;
+    float _playerDirection;
 
     [SerializeField] LayerMask _enemyLayerMask;
 
@@ -32,6 +33,7 @@ public class Grenade : MonoBehaviour
         _circleCollider2D = GetComponent<CircleCollider2D>();
 
         _rigidbody2D.AddForce(new Vector2(200f * _playerController._lastHorizontalInput, 200f));
+        _playerDirection = _playerController._lastHorizontalInput;
     }
 
     // Update is called once per frame
@@ -78,7 +80,7 @@ public class Grenade : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground")
         {
-            _rigidbody2D.velocity = new Vector3(_rollingSpeed, 1);
+            _rigidbody2D.velocity = new Vector3(_rollingSpeed * _playerDirection, 1);
 
         }
     }

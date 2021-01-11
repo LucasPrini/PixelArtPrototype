@@ -11,6 +11,8 @@ TagManager:
   - PassThroughTerrain
   - GameManager
   - MainCanvas
+  - ShieldPickUp
+  - PlayerShield
   layers:
   - Default
   - TransparentFX

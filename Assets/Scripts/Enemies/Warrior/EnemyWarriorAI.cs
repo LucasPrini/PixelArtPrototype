@@ -25,6 +25,10 @@ public class EnemyWarriorAI : GenericEnemyAI
     // Update is called once per frame
     void Update()
     {
+        if (CheckEdge() && isAttacking)
+        {
+            enemyRigidbody2D.velocity = Vector3.zero;
+        }
         TurnAndGoBack();
         if (canEnemyMove == false)
         {
@@ -46,6 +50,10 @@ public class EnemyWarriorAI : GenericEnemyAI
             case State.chasingTarget:
                 canEnemyMove = true;
                 _chargeOnPlayer = false;
+                if (CheckEdge())
+                {
+                    canEnemyMove = false;
+                }
                 if (canEnemyMove)
                 {
                     animator.SetBool("isMoving", true);
@@ -64,7 +72,10 @@ public class EnemyWarriorAI : GenericEnemyAI
 
 
                 animator.SetBool("isMoving", false);
+
                 AttackPlayer();
+
+
                 if (!isAttacking)
                 {
                     FaceTarget(target);

@@ -84,7 +84,7 @@ public class PlayerActions : MonoBehaviour
         Dash();
     }
 
-    [SerializeField] float _comboCounter = 0;
+    public float comboCounter = 0;
 
     void Shoot()
     {
@@ -123,10 +123,10 @@ public class PlayerActions : MonoBehaviour
 
         }
 
-        _comboCounter += 1;
-        if (_comboCounter > _shotsToCrits)
+        comboCounter += 1;
+        if (comboCounter > _shotsToCrits)
         {
-            _comboCounter = 0;
+            comboCounter = 0;
         }
 
 
@@ -141,7 +141,7 @@ public class PlayerActions : MonoBehaviour
 
     void CriticalHitCalculator()
     {
-        if (_comboCounter >= _shotsToCrits)
+        if (comboCounter >= _shotsToCrits)
         {
             isCriticalHit = true;
 
@@ -227,7 +227,7 @@ public class PlayerActions : MonoBehaviour
         if (Input.GetKeyDown(_grenadeKey))
         {
             _animator.SetTrigger("throwGrenade");
-            Instantiate(_granadePrefab, _grenadeSpawnPos.position, Quaternion.identity, _mainCanvas.transform);
+            Instantiate(_granadePrefab, _grenadeSpawnPos.position, Quaternion.identity);
 
         }
     }
@@ -258,7 +258,7 @@ public class PlayerActions : MonoBehaviour
         isDashing = false;
         _playerController.playerControlEnabled = true;
         _playerController.playerRigidbody2D.velocity = new Vector2(0, -3f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
 
 
         _mainCollider2D.enabled = true;
