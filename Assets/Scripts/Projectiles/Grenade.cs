@@ -5,6 +5,7 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     PlayerController _playerController;
+    PlayerActions _playerActions;
     Rigidbody2D _rigidbody2D;
     CircleCollider2D _circleCollider2D;
 
@@ -27,6 +28,7 @@ public class Grenade : MonoBehaviour
     void Start()
     {
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        _playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
         _audioSource = GetComponent<AudioSource>();
@@ -106,7 +108,7 @@ public class Grenade : MonoBehaviour
         {
             if (hit.tag == "Enemy")
             {
-                hit.GetComponent<EnemyDamager>().TakeDamage(_grenadeDamage, _hitSound, false);
+                hit.GetComponent<EnemyDamager>().TakeDamage(_grenadeDamage, _hitSound, _playerActions.isCriticalHit);
             }
 
         }

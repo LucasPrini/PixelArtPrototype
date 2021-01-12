@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     PlayerController _playerController;
+    PlayerResources _playerResources;
     GameObject _mainCanvas;
 
     ComboPointsManager _comboPointsManager;
@@ -58,6 +59,7 @@ public class PlayerActions : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _critChanceText = _critChanceTextOB.GetComponent<TextMeshProUGUI>();
         _mainCanvas = GameObject.FindWithTag("MainCanvas");
+        _playerResources = GetComponent<PlayerResources>();
 
     }
     // Start is called before the first frame update
@@ -221,13 +223,20 @@ public class PlayerActions : MonoBehaviour
         Instantiate(_criticalShotPrefab, _projSpawnPos.position, Quaternion.identity);
 
     }
-
+    [SerializeField] int _grenadeResourceCost;
     void ThrowGrenade()
     {
-        if (Input.GetKeyDown(_grenadeKey))
+        if (Input.GetKeyDown(_grenadeKey) && _playerResources.currentResources >= _grenadeResourceCost)
         {
             _animator.SetTrigger("throwGrenade");
             Instantiate(_granadePrefab, _grenadeSpawnPos.position, Quaternion.identity);
+            _playerResources.currentResources -= _grenadeResourceCost;
+
+
+
+
+
+
 
         }
     }
