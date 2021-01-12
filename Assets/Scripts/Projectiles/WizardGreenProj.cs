@@ -39,7 +39,7 @@ public class WizardGreenProj : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "PlayerShield")
+        if (other.tag == "PlayerShield" || other.tag == "Ground")
         {
 
             Destroy(this.gameObject);

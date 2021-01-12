@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3738663906855228971}
   - component: {fileID: -5284035497142049801}
   - component: {fileID: 518185608171880123}
+  - component: {fileID: -8926617407539131203}
   m_Layer: 0
   m_Name: CriticalShotProj
   m_TagString: Untagged
@@ -139,3 +140,16 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &-8926617407539131203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7596231074097880258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69dc4bbf65fe0ae47bd287ff492fb108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeToDestroy: 1

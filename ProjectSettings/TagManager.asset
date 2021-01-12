@@ -13,6 +13,8 @@ TagManager:
   - MainCanvas
   - ShieldPickUp
   - PlayerShield
+  - grenade
+  - BackupCollider
   layers:
   - Default
   - TransparentFX
@@ -27,8 +29,8 @@ TagManager:
   - Player
   - PassThroughTerrain
   - BackUpCollider
-  - 
-  - 
+  - Grenade
+  - feetCollider
   - 
   - 
   - 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5538654711828836834}
   - component: {fileID: 5538654711828836861}
   - component: {fileID: 1380584462}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: grenadePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

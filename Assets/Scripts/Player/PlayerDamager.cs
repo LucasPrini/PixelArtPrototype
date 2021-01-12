@@ -21,6 +21,8 @@ public class PlayerDamager : MonoBehaviour
 
     SpriteRenderer _spriteRenderer;
     [SerializeField] float _hurtKnockback;
+    [SerializeField] bool _canTakeDamage;
+    [SerializeField] float _damageCD;
     public bool isPlayerShielded = false;
 
     float transparency;
@@ -38,6 +40,11 @@ public class PlayerDamager : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
     }
 
+    private void Start()
+    {
+        _canTakeDamage = true;
+    }
+
     private void Update()
     {
 
@@ -47,8 +54,9 @@ public class PlayerDamager : MonoBehaviour
     //TakeDamageMethods
     public void TakeDamage(float damageTaken, Transform damageSourceTransform)
     {
-        if (_playerActions.isDashing == false)
+        if (_playerActions.isDashing == false && _canTakeDamage)
         {
+            StartCoroutine(TakeDamageCoolDown());
             Vector2 knockBackDirection = (damageSourceTransform.position - this.transform.position);
             StartCoroutine(DisablePlayerControl());
             _playerController.playerRigidbody2D.velocity = -(knockBackDirection.normalized) * _hurtKnockback;
@@ -83,6 +91,13 @@ public class PlayerDamager : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         _playerController.playerControlEnabled = true;
 
+    }
+
+    IEnumerator TakeDamageCoolDown()
+    {
+        _canTakeDamage = false;
+        yield return new WaitForSeconds(_damageCD);
+        _canTakeDamage = true;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

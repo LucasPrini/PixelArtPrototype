@@ -7,9 +7,12 @@ public class ShieldPowerUp : MonoBehaviour
     public float shieldDuration;
     public PlayerDamager _playerDamager;
 
+    PlayerActions _playerActions;
+
     private void Awake()
     {
         _playerDamager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDamager>();
+        _playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
     }
     // Start is called before the first frame update
     void Start()
@@ -27,8 +30,12 @@ public class ShieldPowerUp : MonoBehaviour
     {
         if (other.tag == "EnemyDamageCollider" || other.tag == "Enemy")
         {
-            _playerDamager.isPlayerShielded = false;
-            Destroy(this.gameObject);
+            if (_playerActions.isDashing == false)
+            {
+                _playerDamager.isPlayerShielded = false;
+                Destroy(this.gameObject);
+            }
+
 
         }
     }

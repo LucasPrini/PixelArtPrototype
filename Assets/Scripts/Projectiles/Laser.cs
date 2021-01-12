@@ -69,12 +69,17 @@ public class Laser : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-
-        if (other.tag == "Enemy" && _shieldHit == false)
+        else if (other.tag == "Ground")
+        {
+            Destroy(this.gameObject);
+        }
+        else if (other.tag == "Enemy" && _shieldHit == false)
         {
             other.GetComponent<EnemyDamager>().TakeDamage(damage, _hitSound, _isCriticalHit);
             Destroy(this.gameObject);
         }
+
+
 
     }
 }

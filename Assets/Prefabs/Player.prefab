@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 235396489120003284}
   - component: {fileID: 235396489120003287}
   - component: {fileID: 235396489120003286}
+  - component: {fileID: 7325521702450137178}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -57,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67418fb2a53fe246ad9d65eca0ab2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 4
   currentHealth: 0
   movementSpeed: 6
   basicAttackDamage: 0
@@ -230,10 +231,10 @@ MonoBehaviour:
   _criticalShotClip: {fileID: 8300000, guid: 16254008566fe6b42882ca970861401c, type: 3}
   _comboTimer: 0
   _canCombo: 0
-  _pointsToIncreaseCrit: 100
+  _pointsToIncreaseCrit: 50
   comboPointsCounter: 0
   _increasedCritTextPrefab: {fileID: 6489138653797075032, guid: a7c6e05bfc6b6bb48a6cf68f340f607e, type: 3}
-  _critIncreaseSound: {fileID: 8300000, guid: 93f401a6f20455c4a8ff268068a142e8, type: 3}
+  _critIncreaseSound: {fileID: 8300000, guid: 84f2690e2f506754d86355e33ce925a4, type: 3}
   _critChanceTextOB: {fileID: 0}
   _shotsToCrits: 2
   isCriticalHit: 0
@@ -365,6 +366,24 @@ MonoBehaviour:
   damageCollider: {fileID: 0}
   _cinemachineVirtualCamera: {fileID: 0}
   _hurtKnockback: 3
+  _canTakeDamage: 0
+  _damageCD: 0.6
+  isPlayerShielded: 0
+--- !u!114 &7325521702450137178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235396489120003308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f92cedfa2ee06444ae5031b46a1a771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shieldPowerUp: {fileID: 6029412039117323940, guid: 1657deff613e36e4190be6c3b4fcb8e4, type: 3}
+  _shieldTimerSlider: {fileID: 0}
+  _healthBarCanvas: {fileID: 0}
 --- !u!1 &235396489369355596
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,11 +457,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LightType: 0
+  m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.13665895, g: 0.56774765, b: 0.7830189, a: 1}
-  m_Intensity: 0.42
+  m_Intensity: 0.78
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -463,10 +482,14 @@ MonoBehaviour:
   m_ShapeLightFalloffSize: 0.5
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
+  - {x: -0.7749109, y: -0.6374551, z: 0}
+  - {x: -0.027756691, y: -1.1121974, z: 0}
+  - {x: 0.64050674, y: -0.62671137, z: 0}
+  - {x: 0.6512003, y: 0.39003587, z: 0}
+  - {x: 0.23429585, y: 0.5604632, z: 0}
+  - {x: -0.2880335, y: 0.68417263, z: 0}
+  - {x: -0.6924372, y: 0.4450178, z: 0}
+  - {x: -0.8241081, y: -0.1405586, z: 0}
 --- !u!1 &235396490457003307
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +533,7 @@ GameObject:
   - component: {fileID: 235396490687598650}
   m_Layer: 12
   m_Name: BackUpCollider
-  m_TagString: Player
+  m_TagString: BackupCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -615,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3676523978106975345, guid: 7104cea3a51ee1142b8e7ef5a2e40e13, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3676523978493141956, guid: 7104cea3a51ee1142b8e7ef5a2e40e13, type: 3}
       propertyPath: m_Size.y

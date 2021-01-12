@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ShieldTimerSlider : MonoBehaviour
 {
-    Slider _slider;
+    public Slider _slider;
 
     [SerializeField] float _sliderFillTime;
     PlayerDamager _playerDamager;
@@ -18,18 +18,23 @@ public class ShieldTimerSlider : MonoBehaviour
 
     private void Start()
     {
-
+        _slider.value = 1;
     }
 
 
     private void Update()
     {
+        if (_playerDamager.isPlayerShielded)
+        {
 
-        _slider.value = Mathf.Lerp(1, 0, (Time.time / _sliderFillTime));
+            _slider.value = Mathf.Lerp(1, 0, (Time.time / _sliderFillTime));
+
+        }
 
         if (_playerDamager.isPlayerShielded == false)
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
 
 

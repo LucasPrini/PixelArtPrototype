@@ -21,6 +21,7 @@ public class BlockPopUp : MonoBehaviour
         textMesh.SetText("Blocked!");
         StartCoroutine(FloatingDamageRoutine());
     }
+
     IEnumerator FloatingDamageRoutine()
     {
         yield return new WaitForSeconds(1.5f);
