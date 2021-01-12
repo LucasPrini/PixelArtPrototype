@@ -8,6 +8,7 @@ public class PlayerPowerUpManager : MonoBehaviour
     PlayerDamager _playerDamager;
     [SerializeField] GameObject _shieldPowerUp;
     [SerializeField] GameObject _shieldTimerSlider;
+    [SerializeField] GameObject _upgradeCanvas;
     ShieldTimerSlider _shieldTimerScript;
 
 
@@ -42,6 +43,13 @@ public class PlayerPowerUpManager : MonoBehaviour
             _triggeredPickup = true;
 
 
+        }
+
+        if (other.tag == "BatteryUpgrade")
+        {
+            _upgradeCanvas.SetActive(true);
+            PauseMenuManager.PauseGame();
+            Destroy(other.gameObject);
         }
     }
 }

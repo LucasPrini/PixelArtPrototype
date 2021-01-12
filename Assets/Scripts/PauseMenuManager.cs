@@ -15,7 +15,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
+
 
             if (Time.timeScale == 0)
             {
@@ -31,12 +31,12 @@ public class PauseMenuManager : MonoBehaviour
         }
     }
 
-    void PauseGame()
+    public static void PauseGame()
     {
         Time.timeScale = 0;
     }
 
-    void ResumeGame()
+    public static void ResumeGame()
     {
         Time.timeScale = 1;
 

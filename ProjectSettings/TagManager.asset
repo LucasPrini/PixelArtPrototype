@@ -15,6 +15,7 @@ TagManager:
   - PlayerShield
   - grenade
   - BackupCollider
+  - BatteryUpgrade
   layers:
   - Default
   - TransparentFX
@@ -57,4 +58,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3778278851
     locked: 0

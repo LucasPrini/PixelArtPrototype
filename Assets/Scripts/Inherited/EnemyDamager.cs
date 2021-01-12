@@ -10,6 +10,7 @@ public class EnemyDamager : MonoBehaviour
     ComboPointsManager _comboPointsManager;
     [SerializeField] GameObject _comboParticleEmmiter;
     PlayerActions _playerActions;
+    PlayerResources _playerResources;
 
     public AudioSource audioSource;
 
@@ -29,6 +30,7 @@ public class EnemyDamager : MonoBehaviour
     private void Awake()
     {
         _playerActions = GameObject.FindWithTag("Player").GetComponent<PlayerActions>();
+        _playerResources = GameObject.FindWithTag("Player").GetComponent<PlayerResources>();
         _comboPointsManager = GameObject.FindWithTag("GameManager").GetComponent<ComboPointsManager>();
         enemyCollider2D = GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
@@ -60,6 +62,14 @@ public class EnemyDamager : MonoBehaviour
             floatingDamage.GetComponent<FloatingDamage>().textMesh.fontSize = 3;
             _comboPointsManager.playerComboPoints += 10f;
             _playerActions.comboPointsCounter += 10f;
+            if (_playerResources.maxResources - _playerResources.currentResources >= 10f)
+            {
+                _playerResources.currentResources += 10;
+            }
+            else if (_playerResources.maxResources - _playerResources.currentResources < 10)
+            {
+                _playerResources.currentResources += _playerResources.maxResources - _playerResources.currentResources;
+            }
             //Instantiate(_comboParticleEmmiter, transform.position, Quaternion.identity);
 
 
