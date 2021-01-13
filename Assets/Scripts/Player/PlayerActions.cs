@@ -26,6 +26,7 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] GameObject _critChanceTextOB;
     TextMeshProUGUI _critChanceText;
     [SerializeField] int _shotsToCrits;
+    public bool isBasicHitCrit;
     public bool isCriticalHit;
 
     [SerializeField] float _criticalChance = 0;
@@ -112,7 +113,7 @@ public class PlayerActions : MonoBehaviour
         _playerController.canMove = false;
         _playerController.FaceMouseDirection();
 
-        if (isCriticalHit)
+        if (isCriticalHit || isBasicHitCrit)
         {
 
             _animator.SetTrigger("CriticalShot");
@@ -145,22 +146,25 @@ public class PlayerActions : MonoBehaviour
     {
         if (comboCounter >= _shotsToCrits)
         {
+            isBasicHitCrit = true;
+
+        }
+        else
+        {
+            isBasicHitCrit = false;
+        }
+
+        if (Random.Range(0, 100) < _criticalChance)
+        {
             isCriticalHit = true;
 
         }
         else
         {
-            if (Random.Range(0, 100) < _criticalChance)
-            {
-                isCriticalHit = true;
+            isCriticalHit = false;
 
-            }
-            else
-            {
-                isCriticalHit = false;
-
-            }
         }
+
 
 
 

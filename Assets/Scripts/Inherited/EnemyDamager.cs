@@ -11,6 +11,7 @@ public class EnemyDamager : MonoBehaviour
     [SerializeField] GameObject _comboParticleEmmiter;
     PlayerActions _playerActions;
     PlayerResources _playerResources;
+    PlayerStats _playerStats;
 
     public AudioSource audioSource;
 
@@ -31,6 +32,7 @@ public class EnemyDamager : MonoBehaviour
     {
         _playerActions = GameObject.FindWithTag("Player").GetComponent<PlayerActions>();
         _playerResources = GameObject.FindWithTag("Player").GetComponent<PlayerResources>();
+        _playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
         _comboPointsManager = GameObject.FindWithTag("GameManager").GetComponent<ComboPointsManager>();
         enemyCollider2D = GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
@@ -50,14 +52,19 @@ public class EnemyDamager : MonoBehaviour
 
     public void TakeDamage(int damageTaken, AudioClip _hurtSound, bool isCritical)
     {
+        if (_playerActions.isCriticalHit)
+        {
 
-        enemyCurrentHealth -= damageTaken;
+        }
+
+
         StartCoroutine(BlinkWhenHurt());
         audioSource.PlayOneShot(_hurtSound);
         GameObject floatingDamage = Instantiate(floatingDamagePrefab, enemyCollider2D.bounds.max, Quaternion.identity);
-        floatingDamage.GetComponent<FloatingDamage>().damageReceived = damageTaken;
+
         if (isCritical)
         {
+            damageTaken = (int)(damageTaken * _playerStats.critMultiplier);
             floatingDamage.GetComponent<FloatingDamage>().textMesh.color = Color.red;
             floatingDamage.GetComponent<FloatingDamage>().textMesh.fontSize = 3;
             _comboPointsManager.playerComboPoints += 10f;
@@ -74,6 +81,9 @@ public class EnemyDamager : MonoBehaviour
 
 
         }
+
+        enemyCurrentHealth -= damageTaken;
+        floatingDamage.GetComponent<FloatingDamage>().damageReceived = damageTaken;
         if (enemyCurrentHealth <= 0)
         {
             KillEnemy();

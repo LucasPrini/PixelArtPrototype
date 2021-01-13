@@ -30,10 +30,10 @@ public class Laser : MonoBehaviour
         _player = GameObject.Find("Player");
         //_currentPlayerInput = _player._lastHorizontalInput;
         damage = Random.Range(damageRange[0], damageRange[1]);
-        if (_isCriticalHit)
+        /*if (_isCriticalHit)
         {
             damage = damage * 2;
-        }
+        }*/
     }
     private void Start()
     {
