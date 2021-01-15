@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 235396489120003287}
   - component: {fileID: 235396489120003286}
   - component: {fileID: 7325521702450137178}
+  - component: {fileID: 1151635100}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -65,6 +66,8 @@ MonoBehaviour:
   attackRange: 0
   attackSpeed: 0
   dashForce: 20
+  critMultiplier: 2.5
+  _critMultiUIOB: {fileID: 0}
 --- !u!95 &235396489120003310
 Animator:
   serializedVersion: 3
@@ -121,8 +124,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -516688445
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 4033819434554793953, guid: d9af059847bf28e49b9ebaf0f15bd02d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -237,6 +240,7 @@ MonoBehaviour:
   _critIncreaseSound: {fileID: 8300000, guid: 84f2690e2f506754d86355e33ce925a4, type: 3}
   _critChanceTextOB: {fileID: 0}
   _shotsToCrits: 2
+  isBasicHitCrit: 0
   isCriticalHit: 0
   _criticalChance: 0
   _laserPrefab: {fileID: 1498138806964830056, guid: 8177fb35ade96364eaa443b7b34cbe1e, type: 3}
@@ -254,6 +258,7 @@ MonoBehaviour:
   isDashing: 0
   comboCounter: 0
   isShootingRoutineOn: 0
+  _grenadeResourceCost: 30
 --- !u!82 &235396489120003287
 AudioSource:
   m_ObjectHideFlags: 0
@@ -383,7 +388,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shieldPowerUp: {fileID: 6029412039117323940, guid: 1657deff613e36e4190be6c3b4fcb8e4, type: 3}
   _shieldTimerSlider: {fileID: 0}
+  _upgradeCanvas: {fileID: 0}
   _healthBarCanvas: {fileID: 0}
+--- !u!114 &1151635100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235396489120003308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa740511aafb1154e9d166a350eb9157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxResources: 100
+  currentResources: 0
+  _resourcesBar: {fileID: 0}
 --- !u!1 &235396489369355596
 GameObject:
   m_ObjectHideFlags: 0

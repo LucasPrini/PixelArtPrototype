@@ -9,6 +9,7 @@ public class Grenade : MonoBehaviour
     Rigidbody2D _rigidbody2D;
     CircleCollider2D _circleCollider2D;
 
+    [SerializeField] int[] _grenadeDamageRange;
     [SerializeField] int _grenadeDamage;
     [SerializeField] float _rollingSpeed;
     float _playerDirection;
@@ -36,6 +37,7 @@ public class Grenade : MonoBehaviour
 
         _rigidbody2D.AddForce(new Vector2(200f * _playerController._lastHorizontalInput, 200f));
         _playerDirection = _playerController._lastHorizontalInput;
+        _grenadeDamage = Random.Range(_grenadeDamageRange[0], _grenadeDamageRange[1]);
     }
 
     // Update is called once per frame
