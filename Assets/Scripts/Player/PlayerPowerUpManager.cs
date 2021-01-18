@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerPowerUpManager : MonoBehaviour
 {
     PlayerDamager _playerDamager;
+    PlayerStats _playerStats;
     [SerializeField] GameObject _shieldPowerUp;
     [SerializeField] GameObject _shieldTimerSlider;
     [SerializeField] GameObject _upgradeCanvas;
@@ -17,6 +18,7 @@ public class PlayerPowerUpManager : MonoBehaviour
 
     private void Awake()
     {
+        _playerStats = GetComponent<PlayerStats>();
         _playerDamager = GetComponent<PlayerDamager>();
         _shieldTimerScript = _shieldTimerSlider.GetComponent<ShieldTimerSlider>();
     }
@@ -26,10 +28,11 @@ public class PlayerPowerUpManager : MonoBehaviour
 
     }
 
-    bool _triggeredPickup = false;
+    bool _triggeredShieldPickup = false;
+    bool _triggeredLifePickUp = false;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "ShieldPickUp" && _triggeredPickup == false)
+        if (other.tag == "ShieldPickUp" && _triggeredShieldPickup == false)
         {
             Debug.Log("trigered");
             Destroy(other.gameObject);
@@ -40,7 +43,7 @@ public class PlayerPowerUpManager : MonoBehaviour
             _shieldTimerSlider.SetActive(true);
             _shieldTimerScript._slider.value = 1;
 
-            _triggeredPickup = true;
+            _triggeredShieldPickup = true;
 
 
         }
@@ -51,5 +54,8 @@ public class PlayerPowerUpManager : MonoBehaviour
             PauseMenuManager.PauseGame();
             Destroy(other.gameObject);
         }
+
+
+
     }
 }

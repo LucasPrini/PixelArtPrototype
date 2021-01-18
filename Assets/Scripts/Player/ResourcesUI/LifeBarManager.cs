@@ -31,17 +31,29 @@ public class LifeBarManager : MonoBehaviour
         switch (_playerStats.currentHealth)
         {
             case 4:
-
+                _lifeBarUnitImage[3].CrossFadeAlpha(1, 0.5f, false);
+                _lifeBarUnitImage[2].CrossFadeAlpha(1, 0.5f, false);
+                _lifeBarUnitImage[1].CrossFadeAlpha(1, 0.5f, false);
+                _lifeBarUnitImage[0].CrossFadeAlpha(1, 0.5f, false);
+                _lifeBarUnitImage[1].color = Color.green;
+                _lifeBarUnitImage[0].color = Color.green;
                 break;
 
             case 3:
 
                 _lifeBarUnitImage[3].CrossFadeAlpha(0, 0.5f, false);
+                _lifeBarUnitImage[2].CrossFadeAlpha(1, 0.5f, false);
+                _lifeBarUnitImage[1].CrossFadeAlpha(1, 0.5f, false);
+                _lifeBarUnitImage[0].CrossFadeAlpha(1, 0.5f, false);
+                _lifeBarUnitImage[1].color = Color.green;
+                _lifeBarUnitImage[0].color = Color.green;
                 break;
 
             case 2:
 
                 _lifeBarUnitImage[2].CrossFadeAlpha(0, 0.5f, false);
+                _lifeBarUnitImage[1].CrossFadeAlpha(1, 0.5f, false);
+                _lifeBarUnitImage[0].CrossFadeAlpha(1, 0.5f, false);
                 _lifeBarUnitImage[1].color = Color.yellow;
                 _lifeBarUnitImage[0].color = Color.yellow;
                 break;
@@ -49,6 +61,7 @@ public class LifeBarManager : MonoBehaviour
             case 1:
 
                 _lifeBarUnitImage[1].CrossFadeAlpha(0, 0.5f, false);
+                _lifeBarUnitImage[0].CrossFadeAlpha(1, 0.5f, false);
                 _lifeBarUnitImage[0].color = Color.red;
                 break;
 

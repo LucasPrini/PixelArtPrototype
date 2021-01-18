@@ -16,6 +16,7 @@ TagManager:
   - grenade
   - BackupCollider
   - BatteryUpgrade
+  - LifePickUp
   layers:
   - Default
   - TransparentFX

@@ -207,6 +207,7 @@ public class WizardAI : MonoBehaviour
             _animator.SetTrigger("Attack");
             yield return new WaitForSeconds(Random.Range(0.5f, 3f));
             _animator.ResetTrigger("Attack");
+            yield return new WaitForSeconds(0.4f);
             isCoroutineOn = false;
 
         }
