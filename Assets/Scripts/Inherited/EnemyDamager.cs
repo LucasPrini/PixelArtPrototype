@@ -52,10 +52,10 @@ public class EnemyDamager : MonoBehaviour
 
     public void TakeDamage(int damageTaken, AudioClip _hurtSound, bool isCritical)
     {
-        if (_playerActions.isCriticalHit)
+        /*if (_playerActions.isCriticalHit)
         {
 
-        }
+        }*/
 
 
         StartCoroutine(BlinkWhenHurt());
