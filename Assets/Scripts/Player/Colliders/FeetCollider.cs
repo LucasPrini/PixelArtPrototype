@@ -5,6 +5,7 @@ using UnityEngine;
 public class FeetCollider : MonoBehaviour
 {
     [SerializeField] Collider2D _collider;
+    [SerializeField] GameObject _player;
     PlayerConstraints _playerContraints;
     private void Awake()
     {
@@ -26,5 +27,15 @@ public class FeetCollider : MonoBehaviour
         {
             _collider.enabled = true;
         }*/
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "MovingPlatform")
+        {
+            Debug.Log("FeetCollided");
+            //this.transform.parent.parent.SetParent(other.gameObject.transform);
+            _player.transform.parent = other.transform;
+        }
     }
 }

@@ -17,6 +17,9 @@ TagManager:
   - BackupCollider
   - BatteryUpgrade
   - LifePickUp
+  - MovingPlatformArea
+  - FeetCollider
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX

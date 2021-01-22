@@ -9,7 +9,7 @@ public class LifePickUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("lifepicked");
+
         if (other.tag == "Player" && _isTriggered == false)
         {
             PlayerStats _playerStats = other.GetComponent<PlayerStats>();
