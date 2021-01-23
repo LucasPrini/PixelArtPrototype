@@ -82,6 +82,7 @@ public class EnemyNinjaAI : GenericEnemyAI
 
     void AttackPlayer()
     {
+        FaceTarget(target);
         isAttacking = true;
         canEnemyMove = false;
         if (isRoutineOn == false)
@@ -100,7 +101,7 @@ public class EnemyNinjaAI : GenericEnemyAI
         yield return new WaitForSeconds(1f);
         Instantiate(_smokePrefab, transform.position, Quaternion.identity);
         audioSource.PlayOneShot(_smokeSound);
-        transform.position = target.transform.position - new Vector3((0.7f * playerDirection), 0, 0);
+        transform.position = target.transform.position - new Vector3((0.7f * playerDirection), -0.3f, 0);
         FaceTarget(target);
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("isPrepingAttack", false);
