@@ -6,7 +6,10 @@ public class MovingPlatforms : MonoBehaviour
 {
     Rigidbody2D _rigidbody2D;
 
-    [SerializeField] float _platformSpeed;
+    public bool moveHorizontal;
+    public bool moveVertical;
+
+    public float platformSpeed;
     [SerializeField] GameObject _platformArea;
     Collider2D _areaCollider2D;
 
@@ -29,24 +32,37 @@ public class MovingPlatforms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(moveHorizontal == true){
+            moveVertical = false;
+        }
+        if(moveVertical == true){
+            moveHorizontal = false;
+        }
     }
 
     private void FixedUpdate()
     {
-        _rigidbody2D.velocity = new Vector3(_platformSpeed, 0, 0);
+        if(moveHorizontal == true){
+            _rigidbody2D.velocity = new Vector3(platformSpeed, 0, 0);
+        }else if(moveVertical == true){
+            _rigidbody2D.velocity = new Vector3(0, platformSpeed, 0);
+        }
+
+
+        
     }
 
+    
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "FeetCollider"){
+        /*if(other.gameObject.tag == "FeetCollider"){
             Debug.Log("feetcollided");
             other.gameObject.transform.parent.parent.parent = this.transform;
-        }
+        }*/
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if(other.tag == "MovingPlatformArea"){
-            _platformSpeed = _platformSpeed * -1;
+            platformSpeed = platformSpeed * -1;
         }
         
     }

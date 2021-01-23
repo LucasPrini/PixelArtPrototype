@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour
     PlayerConstraints _playerContraints;
     PlayerActions _playerActions;
 
+    RidePlatform _ridePlatform;
+    //[SerializeField] GameObject _movingPlatform;
+    //MovingPlatforms _movingPlatforms;
+    [SerializeField] GameObject _feetCollider;
+    FeetCollider _feetColliderScript;
+
     Animator _animator;
 
     public float _horizontalInput;
@@ -28,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     float _earlyJumpCountdown;
 
+    [SerializeField] Vector3 _playerVelocity;
+
     private void Awake()
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
@@ -35,6 +43,9 @@ public class PlayerController : MonoBehaviour
         _playerContraints = GetComponent<PlayerConstraints>();
         _audioSource = GetComponent<AudioSource>();
         _playerActions = GetComponent<PlayerActions>();
+        _ridePlatform = GetComponent<RidePlatform>();
+        //_movingPlatforms = _movingPlatform.GetComponent<MovingPlatforms>();
+        _feetColliderScript = _feetCollider.GetComponent<FeetCollider>();
     }
 
 
@@ -42,7 +53,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        _playerVelocity = playerRigidbody2D.velocity;
 
         JumpTimer();
 
@@ -89,12 +100,26 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("isWalking", false);
         }
 
+        if (_ridePlatform.isRidingPlatform == true)
+        {
+            if (_feetColliderScript.platformMovingHorizontal == true)
+            {
+                playerRigidbody2D.velocity = new Vector2(_feetColliderScript.platformSpeed + _horizontalInput * _moveSpeed, playerRigidbody2D.velocity.y);
+            }
+            else
+            {
+                playerRigidbody2D.velocity = new Vector2(_horizontalInput * _moveSpeed, playerRigidbody2D.velocity.y);
 
-        playerRigidbody2D.velocity = new Vector2(_horizontalInput * _moveSpeed, playerRigidbody2D.velocity.y);
+            }
 
 
 
+        }
+        else
+        {
+            playerRigidbody2D.velocity = new Vector2(_horizontalInput * _moveSpeed, playerRigidbody2D.velocity.y);
 
+        }
 
 
     }
