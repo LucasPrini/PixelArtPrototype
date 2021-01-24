@@ -13,9 +13,14 @@ public class ComboPointsManager : MonoBehaviour
     {
         _comboPointsText = _comboPointsTextOB.GetComponent<TextMeshProUGUI>();
     }
+    private void Start()
+    {
+        playerComboPoints = PlayerPrefs.GetFloat("comboPoints");
+    }
 
     private void Update()
     {
         _comboPointsText.SetText("CP: " + playerComboPoints);
+        PlayerPrefs.SetFloat("comboPoints", playerComboPoints);
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerStats : GenericStats
 {
     public float dashForce;
+    public float startingCritMultiplier;
     public float critMultiplier;
     [SerializeField] GameObject _critMultiUIOB;
     TextMeshProUGUI _critMultiUIText;
@@ -18,11 +19,13 @@ public class PlayerStats : GenericStats
     private void Start()
     {
         currentHealth = maxHealth;
-        critMultiplier = 2;
+        critMultiplier = PlayerPrefs.GetFloat("CritMulti") + startingCritMultiplier;
+        //critMultiplier = 2;
     }
 
     private void Update()
     {
+        PlayerPrefs.SetFloat("CritMulti", critMultiplier);
         _critMultiUIText.SetText("CritMultiplier: " + critMultiplier + "x");
     }
 }

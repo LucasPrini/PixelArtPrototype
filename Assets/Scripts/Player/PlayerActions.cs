@@ -66,12 +66,13 @@ public class PlayerActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        _criticalChance = PlayerPrefs.GetFloat("CritChance");
     }
 
     // Update is called once per frame
     void Update()
     {
+        PlayerPrefs.SetFloat("CritChance", _criticalChance);
         if (isDashing)
         {
             _playerController.playerRigidbody2D.velocity = new Vector2(_playerController.playerRigidbody2D.velocity.x, 0f);

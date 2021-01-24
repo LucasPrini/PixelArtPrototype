@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerResources : MonoBehaviour
 {
+    public float startingMaxResources;
     public float maxResources;
     public float currentResources;
 
@@ -20,11 +21,13 @@ public class PlayerResources : MonoBehaviour
 
     private void Start()
     {
+        maxResources = PlayerPrefs.GetFloat("maxResources") + startingMaxResources;
         currentResources = maxResources;
     }
 
     private void Update()
     {
         _resourcesBarText.SetText(currentResources + "/" + maxResources);
+        PlayerPrefs.SetFloat("maxResources", maxResources);
     }
 }
