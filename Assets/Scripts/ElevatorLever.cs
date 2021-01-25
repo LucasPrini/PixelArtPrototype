@@ -6,6 +6,9 @@ public class ElevatorLever : MonoBehaviour
 {
     [SerializeField] bool _playerInRange;
 
+    AudioSource _leverAudioSource;
+    [SerializeField] AudioClip _leverSound;
+
     [SerializeField] Sprite _deactivatedLeverSprite;
     [SerializeField] Sprite _activatedLeverSprite;
 
@@ -16,6 +19,7 @@ public class ElevatorLever : MonoBehaviour
     private void Awake()
     {
         _leverSpriteRenderer = GetComponent<SpriteRenderer>();
+        _leverAudioSource = GetComponent<AudioSource>();
     }
 
 
@@ -24,6 +28,7 @@ public class ElevatorLever : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && _playerInRange)
         {
             isLeverActivated = true;
+            _leverAudioSource.PlayOneShot(_leverSound);
         }
 
         if (isLeverActivated == true)
