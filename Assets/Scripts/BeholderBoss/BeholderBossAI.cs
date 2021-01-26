@@ -10,15 +10,29 @@ public class BeholderBossAI : MonoBehaviour
     [SerializeField] GameObject _tentacleShotPrefab;
 
     [SerializeField] Transform _arenaCenter;
+    [SerializeField] Transform _arenaRoofTop;
     [SerializeField] float _chargeSpeed;
     bool _chargeOnPlayer;
     bool _prepareBounceAttack;
     bool _bounceOnPlayer;
     Vector2 _currentBossPos;
 
+
+    [SerializeField] Transform _mainEyeTransform;
+    [SerializeField] GameObject _laserBeamPrefab;
+    LineRenderer _laserBeamLineRenderer;
+
+    private void Awake()
+    {
+        //_laserBeamLineRenderer = _laserBeamPrefab.GetComponent<LineRenderer>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+
+
+
         /*if (isTentacleShotRoutineON == false)
         {
             StartCoroutine(TentacleShotRoutine());
@@ -44,7 +58,7 @@ public class BeholderBossAI : MonoBehaviour
         }
         if (_prepareBounceAttack)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(_currentBossPos.x, _currentBossPos.y + 3), _chargeSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(_currentBossPos.x, _arenaRoofTop.position.y), (_chargeSpeed + 3) * Time.deltaTime);
         }
         if (_bounceOnPlayer)
         {
