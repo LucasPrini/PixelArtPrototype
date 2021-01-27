@@ -23,6 +23,7 @@ public class PlayerDamager : MonoBehaviour
     [SerializeField] float _hurtKnockback;
     [SerializeField] bool _canTakeDamage;
     [SerializeField] float _damageCD;
+    [SerializeField] float _slowMotionValue;
     public bool isPlayerShielded = false;
 
     float transparency;
@@ -57,8 +58,10 @@ public class PlayerDamager : MonoBehaviour
         if (_playerActions.isDashing == false && _canTakeDamage)
         {
             StartCoroutine(TakeDamageCoolDown());
+
             Vector2 knockBackDirection = (damageSourceTransform.position - this.transform.position);
             StartCoroutine(DisablePlayerControl());
+            StartCoroutine(SlowTimeWhenDamaged());
             _playerController.playerRigidbody2D.velocity = -(knockBackDirection.normalized) * _hurtKnockback;
             _playerStats.currentHealth = _playerStats.currentHealth - damageTaken;
             _audioSource.PlayOneShot(_hurtSound);
@@ -98,6 +101,13 @@ public class PlayerDamager : MonoBehaviour
         _canTakeDamage = false;
         yield return new WaitForSeconds(_damageCD);
         _canTakeDamage = true;
+    }
+
+    IEnumerator SlowTimeWhenDamaged()
+    {
+        Time.timeScale = _slowMotionValue;
+        yield return new WaitForSeconds(0.3f);
+        Time.timeScale = 1;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

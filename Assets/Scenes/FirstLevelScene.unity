@@ -205220,6 +205220,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8768589672481913739}
     - target: {fileID: 235396489120003286, guid: 6e0b36ec4ccf61446b0b19f9607aba64, type: 3}
+      propertyPath: _slowMotionValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 235396489120003286, guid: 6e0b36ec4ccf61446b0b19f9607aba64, type: 3}
       propertyPath: _cinemachineVirtualCamera
       value: 
       objectReference: {fileID: 8768589672481913738}

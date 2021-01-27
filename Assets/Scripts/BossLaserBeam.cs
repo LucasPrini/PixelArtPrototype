@@ -30,6 +30,11 @@ public class BossLaserBeam : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        Destroy(_instantiatedObject);
+    }
+
     // Update is called once per frame
     void Update()
     {

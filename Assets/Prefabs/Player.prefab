@@ -378,6 +378,7 @@ MonoBehaviour:
   _hurtKnockback: 3
   _canTakeDamage: 0
   _damageCD: 0.6
+  _slowMotionValue: 0.5
   isPlayerShielded: 0
 --- !u!114 &7325521702450137178
 MonoBehaviour:
