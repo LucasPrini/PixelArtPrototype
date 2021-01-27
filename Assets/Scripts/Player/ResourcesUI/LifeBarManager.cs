@@ -19,7 +19,7 @@ public class LifeBarManager : MonoBehaviour
         _lifeBarUnitImage = new Image[_lifeBarUnit.Length];
         for (int i = 0; i < _lifeBarUnit.Length; i++)
         {
-            Debug.Log("got " + i);
+            //Debug.Log("got " + i);
             _lifeBarUnitImage[i] = _lifeBarUnit[i].GetComponent<Image>();
 
         }

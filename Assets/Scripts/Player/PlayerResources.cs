@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerResources : MonoBehaviour
 {
+    float _sceneIndex;
     public float startingMaxResources;
     public float maxResources;
     public float currentResources;
@@ -21,7 +23,18 @@ public class PlayerResources : MonoBehaviour
 
     private void Start()
     {
-        maxResources = PlayerPrefs.GetFloat("maxResources") + startingMaxResources;
+
+        _sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if (_sceneIndex == 1)
+        {
+
+        }
+        else
+        {
+            maxResources = PlayerPrefs.GetFloat("maxResources");
+        }
+        //maxResources = PlayerPrefs.GetFloat("maxResources") + startingMaxResources;
         currentResources = maxResources;
     }
 

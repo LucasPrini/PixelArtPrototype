@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerStats : GenericStats
@@ -10,6 +11,7 @@ public class PlayerStats : GenericStats
     public float critMultiplier;
     [SerializeField] GameObject _critMultiUIOB;
     TextMeshProUGUI _critMultiUIText;
+    float _sceneIndex;
 
     private void Awake()
     {
@@ -18,9 +20,20 @@ public class PlayerStats : GenericStats
 
     private void Start()
     {
+        _sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if (_sceneIndex == 1)
+        {
+            critMultiplier = 2;
+        }
+        else
+        {
+            critMultiplier = PlayerPrefs.GetFloat("CritMulti");
+        }
+
         currentHealth = maxHealth;
-        critMultiplier = PlayerPrefs.GetFloat("CritMulti") + startingCritMultiplier;
-        //critMultiplier = 2;
+        //critMultiplier = PlayerPrefs.GetFloat("CritMulti") + startingCritMultiplier;
+
     }
 
     private void Update()

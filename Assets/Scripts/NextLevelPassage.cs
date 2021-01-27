@@ -28,7 +28,7 @@ public class NextLevelPassage : MonoBehaviour
     {
         isRoutineOn = true;
         _sceneTransitionAnimator.SetTrigger("StartSceneTransition");
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(1.35f);
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneIndex + 1);
         isRoutineOn = false;

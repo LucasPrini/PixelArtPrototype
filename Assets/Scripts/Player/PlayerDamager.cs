@@ -102,7 +102,7 @@ public class PlayerDamager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy" && isPlayerShielded == false)
+        if (other.gameObject.tag == "Enemy" && isPlayerShielded == false || other.gameObject.tag == "DamagingObject" && isPlayerShielded == false)
         {
             TakeDamage(1, other.gameObject.transform);
         }
