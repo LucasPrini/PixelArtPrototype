@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e986af28d4c704fba68371d3413f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grenadeDamageRange: dc0000002c010000
+  _grenadeDamageRange: 2c01000068010000
   _grenadeDamage: 0
   _rollingSpeed: 1
   _enemyLayerMask:

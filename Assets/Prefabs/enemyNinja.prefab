@@ -177,6 +177,9 @@ MonoBehaviour:
   awarenessRangeScript: {fileID: 0}
   _smokePrefab: {fileID: 6388121401152829802, guid: f592e7d6cc713bc42b5f30b2bf727483, type: 3}
   _smokeSound: {fileID: 8300000, guid: 78f6a96b324667c4292d87664a96c707, type: 3}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &743198506364151495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +316,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   hurtMaterial: {fileID: 2100000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
   _bloodExplosionPrefab: {fileID: 2252954067278078127, guid: 24fd678237d666f4bb3087d70dd996d2, type: 3}
-  enemyMaxHealth: 350
+  enemyMaxHealth: 750
   enemyCurrentHealth: 0
 --- !u!1 &743198506998794628
 GameObject:

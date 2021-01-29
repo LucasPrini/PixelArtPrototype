@@ -72,18 +72,20 @@ public class PlayerActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        CriticalHitCalculator();
+        IncreaseCriticalChance();
         PlayerPrefs.SetFloat("CritChance", _criticalChance);
         if (isDashing)
         {
             _playerController.playerRigidbody2D.velocity = new Vector2(_playerController.playerRigidbody2D.velocity.x, 0f);
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
             Shoot();
         }
 
-        CriticalHitCalculator();
-        IncreaseCriticalChance();
+
         ThrowGrenade();
         Dash();
     }
@@ -117,12 +119,17 @@ public class PlayerActions : MonoBehaviour
         if (isCriticalHit || isBasicHitCrit)
         {
 
-            _animator.SetTrigger("CriticalShot");
+            _animator.SetTrigger("Shoot");
+            PlayCriticalSound();
+            SpawnCritProjectile();
         }
         else if (!isCriticalHit)
         {
 
+
             _animator.SetTrigger("Shoot");
+            PlayShootSound();
+            SpawnProjectile();
 
 
         }
@@ -136,7 +143,7 @@ public class PlayerActions : MonoBehaviour
 
 
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         _playerController.canMove = true;
         isShootingRoutineOn = false;

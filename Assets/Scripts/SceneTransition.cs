@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
+using UnityEditor;
+
+using UnityEngine.SceneManagement;
+
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
@@ -24,6 +27,10 @@ public class SceneTransition : MonoBehaviour
         {
             _levelNameTextUI.SetText("The Tower");
         }
+        if (SceneBuildIndex == 3)
+        {
+            _levelNameTextUI.SetText("Beholder Chamber");
+        }
     }
 
 
@@ -34,7 +41,7 @@ public class SceneTransition : MonoBehaviour
 
     void GetSceneIndex()
     {
-        SceneBuildIndex = EditorSceneManager.GetActiveScene().buildIndex;
+        SceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
     public void PauseGame()

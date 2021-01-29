@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 57d3940386713eb42a63fd8daa80108b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,9 +116,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.31, y: 0.039999932}
-  m_Size: {x: 2.7728744, y: 2.7728744}
-  m_Direction: 0
+  m_Offset: {x: -0.14828415, y: 0.00897469}
+  m_Size: {x: 5.6894617, y: 0.97330874}
+  m_Direction: 1
 --- !u!50 &844136701530370495
 Rigidbody2D:
   serializedVersion: 4
@@ -152,4 +152,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69dc4bbf65fe0ae47bd287ff492fb108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToDestroy: 1
+  _timeToDestroy: 0.8

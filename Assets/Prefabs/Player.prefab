@@ -239,7 +239,7 @@ MonoBehaviour:
   _criticalShotClip: {fileID: 8300000, guid: 16254008566fe6b42882ca970861401c, type: 3}
   _comboTimer: 0
   _canCombo: 0
-  _pointsToIncreaseCrit: 50
+  _pointsToIncreaseCrit: 100
   comboPointsCounter: 0
   _increasedCritTextPrefab: {fileID: 6489138653797075032, guid: a7c6e05bfc6b6bb48a6cf68f340f607e, type: 3}
   _critIncreaseSound: {fileID: 8300000, guid: 84f2690e2f506754d86355e33ce925a4, type: 3}
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingMaxResources: 100
-  maxResources: 0
+  maxResources: 100
   currentResources: 0
   _resourcesBar: {fileID: 0}
 --- !u!114 &458787804
@@ -464,7 +464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235396489369355596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.076, y: -0.009, z: 0}
+  m_LocalPosition: {x: 0.388, y: 0.003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 235396489120003305}

@@ -5,9 +5,12 @@ using UnityEngine;
 public class BossLaserBeam : MonoBehaviour
 {
 
+
     LineRenderer _laserBeamRenderer;
     [SerializeField] Transform _startingTransform;
     [SerializeField] Transform _shootingPosTransform;
+    GameObject _beholderBoss;
+    EnemyDamager _bossDamager;
 
     Vector2 _heading;
     float _distance;
@@ -23,6 +26,8 @@ public class BossLaserBeam : MonoBehaviour
     private void Awake()
     {
         _laserBeamRenderer = GetComponent<LineRenderer>();
+
+        _beholderBoss = GameObject.Find("BeholderBoss");
     }
     // Start is called before the first frame update
     void Start()
@@ -38,6 +43,11 @@ public class BossLaserBeam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_beholderBoss == null)
+        {
+            this.gameObject.SetActive(false);
+        }
+
         _heading = _shootingPosTransform.position - _startingTransform.position;
         _distance = _heading.magnitude;
         _direction = _heading / _distance;
@@ -67,6 +77,8 @@ public class BossLaserBeam : MonoBehaviour
             alreadyInstantiated = false;
             Destroy(_instantiatedObject);
         }
+
+
     }
 
     bool isParticleRoutineON;

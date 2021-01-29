@@ -77,8 +77,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.028587341, y: 0.03887874}
-  m_Size: {x: 0.3323822, y: 0.98160374}
+  m_Offset: {x: 0.0044517517, y: 0.03887874}
+  m_Size: {x: 0.377594, y: 0.98160374}
   m_Direction: 0
 --- !u!50 &2209198810733422293
 Rigidbody2D:
@@ -362,8 +362,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -516688445
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -5220196225730442467, guid: 60227b874b0f41a479bd954ea17301b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -597,7 +597,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   hurtMaterial: {fileID: 2100000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
   _bloodExplosionPrefab: {fileID: 2252954067278078127, guid: 24fd678237d666f4bb3087d70dd996d2, type: 3}
-  enemyMaxHealth: 350
+  enemyMaxHealth: 750
   enemyCurrentHealth: 0
 --- !u!1 &5951958156939758389
 GameObject:

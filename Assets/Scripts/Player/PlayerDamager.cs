@@ -117,4 +117,12 @@ public class PlayerDamager : MonoBehaviour
             TakeDamage(1, other.gameObject.transform);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "DamagingObject")
+        {
+            TakeDamage(1, other.gameObject.transform);
+        }
+    }
 }

@@ -21,6 +21,7 @@ TagManager:
   - FeetCollider
   - MovingPlatform
   - DamagingObject
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -40,7 +41,7 @@ TagManager:
   - PostProcessing
   - MovingPlatform
   - wallPull
-  - 
+  - CameraConfiner
   - 
   - 
   - 

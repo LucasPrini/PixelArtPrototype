@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BeholderBossAI : MonoBehaviour
 {
-    enum State
+    public enum State
     {
         idle,
         BounceAttack,
@@ -12,7 +12,13 @@ public class BeholderBossAI : MonoBehaviour
         LaserBeamAttack,
     }
 
-    [SerializeField] State bossState;
+
+
+
+    public State bossState;
+
+    public bool _killLaser;
+    [SerializeField] GameObject _bossHealthCanvas;
 
     AudioSource _bossAudioSource;
     [SerializeField] GameObject _target;
@@ -61,12 +67,13 @@ public class BeholderBossAI : MonoBehaviour
     {
         //_laserBeamLineRenderer = _laserBeamPrefab.GetComponent<LineRenderer>();
         _bossAudioSource = GetComponent<AudioSource>();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        bossState = State.BounceAttack;
+        bossState = State.idle;
 
 
         /*if (isTentacleShotRoutineON == false)
@@ -80,13 +87,23 @@ public class BeholderBossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_killLaser == true)
+        {
+            _laserBeamPrefab.SetActive(false);
+            _bossHealthCanvas.SetActive(false);
+        }
+
         switch (bossState)
         {
             case State.idle:
-
+                if (!_stopFloating)
+                {
+                    FloatingMovement();
+                }
                 break;
 
             case State.BounceAttack:
+                _bossHealthCanvas.SetActive(true);
                 if (isBounceRoutineON == false)
                 {
                     StartCoroutine(BounceOnPlayerRoutine());
@@ -248,7 +265,7 @@ public class BeholderBossAI : MonoBehaviour
     {
 
         float newY = Mathf.Sin(Time.time * _floatingSpeed) * _floatingHeight;
-        transform.position = new Vector3(transform.position.x, newY + _bossPosition.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, newY + transform.position.y, transform.position.z);
     }
 
     public void FaceTarget()
