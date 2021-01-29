@@ -7,9 +7,11 @@ public class PlayerConstraints : MonoBehaviour
     Collider2D _playerMainCollider;
     [SerializeField] Collider2D _backUpCollider;
 
-    [SerializeField] bool _grounded;
+    public bool isGrounded;
 
     [SerializeField] LayerMask _groundLayerMask;
+
+    public bool _stillGrounded;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +25,15 @@ public class PlayerConstraints : MonoBehaviour
 
         if (IsGrounded())
         {
-            _grounded = true;
+            isGrounded = true;
         }
         else
         {
-            _grounded = false;
+            if (isCoyoteRoutineOn == false)
+            {
+                StartCoroutine(CoyoteJumpRoutine());
+            }
+
         }
     }
 
@@ -36,7 +42,16 @@ public class PlayerConstraints : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, _backUpCollider.bounds.extents.y + 0.2f, _groundLayerMask);
         Debug.DrawRay(transform.position, Vector2.down * (_backUpCollider.bounds.extents.y + 0.2f), Color.green);
+        isCoyoteRoutineOn = false;
         return hit.collider != null;
+    }
+
+    bool isCoyoteRoutineOn;
+    IEnumerator CoyoteJumpRoutine()
+    {
+        isCoyoteRoutineOn = true;
+        yield return new WaitForSeconds(0.2f);
+        isGrounded = false;
     }
 
 

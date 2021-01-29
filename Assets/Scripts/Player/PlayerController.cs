@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
 
     void RestricAirJump()
     {
-        if (_playerContraints.IsGrounded())
+        if (_playerContraints.isGrounded)
         {
             _jumpCounter = 0;
             _canJump = true;
