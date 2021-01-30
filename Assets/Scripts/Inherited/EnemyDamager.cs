@@ -65,6 +65,7 @@ public class EnemyDamager : MonoBehaviour
         if (isCritical)
         {
             damageTaken = (int)(damageTaken * _playerStats.critMultiplier);
+
             floatingDamage.GetComponent<FloatingDamage>().textMesh.color = Color.red;
             floatingDamage.GetComponent<FloatingDamage>().textMesh.fontSize = 3;
             _comboPointsManager.playerComboPoints += 10f;
@@ -82,12 +83,13 @@ public class EnemyDamager : MonoBehaviour
 
         }
 
-        if(enemyCurrentHealth > 0){
+        if (enemyCurrentHealth > 0)
+        {
             enemyCurrentHealth -= damageTaken;
         }
-        
+
         floatingDamage.GetComponent<FloatingDamage>().damageReceived = damageTaken;
-        if (enemyCurrentHealth <= 0)
+        if (enemyCurrentHealth <= 0 && this.gameObject.name != "BeholderBoss")
         {
             KillEnemy();
         }
@@ -102,11 +104,15 @@ public class EnemyDamager : MonoBehaviour
 
     void KillEnemy()
     {
-        
+
+
         Instantiate(_bloodExplosionPrefab, transform.position, Quaternion.identity);
 
         Destroy(this.gameObject);
     }
+
+
+
 
 
 }

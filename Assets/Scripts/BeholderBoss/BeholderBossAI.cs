@@ -13,7 +13,15 @@ public class BeholderBossAI : MonoBehaviour
     }
 
 
+    EnemyDamager _bossDamager;
+    [SerializeField] GameObject _beholderBloodExplosion;
+    [SerializeField] GameObject _deathLightPrefab;
 
+
+    SpriteRenderer _bossSpriteRenderer;
+    Material _bossStartingMaterial;
+
+    Animator _bossAnimator;
 
     public State bossState;
 
@@ -38,6 +46,8 @@ public class BeholderBossAI : MonoBehaviour
 
     [Header("BounceAttackVariables")]
     [SerializeField] float _chargeSpeed;
+    [SerializeField] GameObject _virtualCam;
+    CinemachineCamera _cinemachineCam;
     bool _chargeOnPlayer;
     bool _prepareBounceAttack;
     bool _bounceOnPlayer;
@@ -62,11 +72,19 @@ public class BeholderBossAI : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] AudioClip _laserCharge;
     [SerializeField] AudioClip _laserRelease;
+    [SerializeField] AudioClip _tentacleShotSound;
+
+    [SerializeField] AudioClip _boundSound;
 
     private void Awake()
     {
         //_laserBeamLineRenderer = _laserBeamPrefab.GetComponent<LineRenderer>();
         _bossAudioSource = GetComponent<AudioSource>();
+        _bossDamager = GetComponent<EnemyDamager>();
+        _bossAnimator = GetComponent<Animator>();
+        _bossSpriteRenderer = GetComponent<SpriteRenderer>();
+        _bossStartingMaterial = _bossSpriteRenderer.material;
+        _cinemachineCam = _virtualCam.GetComponent<CinemachineCamera>();
 
     }
 
@@ -91,6 +109,11 @@ public class BeholderBossAI : MonoBehaviour
         {
             _laserBeamPrefab.SetActive(false);
             _bossHealthCanvas.SetActive(false);
+        }
+
+        if (_bossDamager.enemyCurrentHealth <= 0)
+        {
+            KillBoss();
         }
 
         switch (bossState)
@@ -280,6 +303,32 @@ public class BeholderBossAI : MonoBehaviour
         }
     }
 
+    public void KillBoss()
+    {
+        Destroy(_bossDamager);
+        if (isKillBeholderRoutine == false)
+        {
+            StartCoroutine(KillBeholderRoutine());
+        }
+    }
+
+    bool isKillBeholderRoutine;
+    IEnumerator KillBeholderRoutine()
+    {
+
+        isKillBeholderRoutine = true;
+        _stopFloating = true;
+        _bossSpriteRenderer.material = _bossStartingMaterial;
+        Instantiate(_deathLightPrefab, transform.position, Quaternion.identity);
+        _bossAnimator.SetTrigger("Die");
+
+        yield return new WaitForSeconds(5.1f);
+
+        Instantiate(_beholderBloodExplosion, transform.position, Quaternion.identity);
+
+        Destroy(this.gameObject);
+    }
+
     [SerializeField] bool isBounceRoutineON;
     IEnumerator BounceOnPlayerRoutine()
     {
@@ -294,6 +343,8 @@ public class BeholderBossAI : MonoBehaviour
         _prepareBounceAttack = false;
         _currentTargetPos = _target.transform.position;
         _bounceOnPlayer = true;
+        _bossAudioSource.PlayOneShot(_boundSound);
+        _cinemachineCam.ShakeScreen(3, 1);
         yield return new WaitForSeconds(1f);
         _bounceOnPlayer = false;
         _currentBossPos = this.transform.position;
@@ -302,6 +353,8 @@ public class BeholderBossAI : MonoBehaviour
         _prepareBounceAttack = false;
         _currentTargetPos = _target.transform.position;
         _bounceOnPlayer = true;
+        _bossAudioSource.PlayOneShot(_boundSound);
+        _cinemachineCam.ShakeScreen(3, 1);
         yield return new WaitForSeconds(1f);
         _bounceOnPlayer = false;
         _currentBossPos = this.transform.position;
@@ -310,6 +363,8 @@ public class BeholderBossAI : MonoBehaviour
         _prepareBounceAttack = false;
         _currentTargetPos = _target.transform.position;
         _bounceOnPlayer = true;
+        _bossAudioSource.PlayOneShot(_boundSound);
+        _cinemachineCam.ShakeScreen(3, 1);
         yield return new WaitForSeconds(1f);
         _bounceOnPlayer = false;
 
@@ -326,12 +381,16 @@ public class BeholderBossAI : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         ShootTentacleShot(_tentacleEyes[0]);
+        _bossAudioSource.PlayOneShot(_tentacleShotSound);
         yield return new WaitForSeconds(0.6f);
         ShootTentacleShot(_tentacleEyes[1]);
+        _bossAudioSource.PlayOneShot(_tentacleShotSound);
         yield return new WaitForSeconds(0.6f);
         ShootTentacleShot(_tentacleEyes[2]);
+        _bossAudioSource.PlayOneShot(_tentacleShotSound);
         yield return new WaitForSeconds(0.6f);
         ShootTentacleShot(_tentacleEyes[3]);
+        _bossAudioSource.PlayOneShot(_tentacleShotSound);
         yield return new WaitForSeconds(0.6f);
         bossState = State.LaserBeamAttack;
 

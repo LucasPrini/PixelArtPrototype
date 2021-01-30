@@ -10,7 +10,7 @@ public class LifePickUp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.tag == "Player" && _isTriggered == false)
+        if (other.tag == "Player" && _isTriggered == false || other.tag == "BackupCollider" && _isTriggered == false)
         {
             PlayerStats _playerStats = other.GetComponent<PlayerStats>();
             if (_playerStats.currentHealth < _playerStats.maxHealth)

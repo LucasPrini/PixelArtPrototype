@@ -176,7 +176,7 @@ MonoBehaviour:
   awarenessArea: {fileID: 743198507943650516}
   awarenessRangeScript: {fileID: 0}
   _smokePrefab: {fileID: 6388121401152829802, guid: f592e7d6cc713bc42b5f30b2bf727483, type: 3}
-  _smokeSound: {fileID: 8300000, guid: 78f6a96b324667c4292d87664a96c707, type: 3}
+  _smokeSound: {fileID: 8300000, guid: e954212825a569042bc2ceba8681fda6, type: 3}
   _layerMask:
     serializedVersion: 2
     m_Bits: 0

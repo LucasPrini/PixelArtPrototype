@@ -80,7 +80,7 @@ public class PlayerActions : MonoBehaviour
         {
             _playerController.playerRigidbody2D.velocity = new Vector2(_playerController.playerRigidbody2D.velocity.x, 0f);
         }
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) || Input.GetMouseButton(0))
         {
             Shoot();
         }
@@ -255,7 +255,7 @@ public class PlayerActions : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetKeyDown(_dashKey) && _isDashInCD == false)
+        if (Input.GetKeyDown(_dashKey) && _isDashInCD == false || Input.GetKeyDown(KeyCode.LeftControl) && _isDashInCD == false)
         {
             StartCoroutine(DashRoutine());
         }
