@@ -10,6 +10,7 @@ public class BeholderBossAI : MonoBehaviour
         BounceAttack,
         TentacleShotAttack,
         LaserBeamAttack,
+        die,
     }
 
 
@@ -76,6 +77,10 @@ public class BeholderBossAI : MonoBehaviour
 
     [SerializeField] AudioClip _boundSound;
 
+    [SerializeField] AudioClip _deathAnimSound;
+    [SerializeField] AudioClip _deathExplosionSound;
+
+
     private void Awake()
     {
         //_laserBeamLineRenderer = _laserBeamPrefab.GetComponent<LineRenderer>();
@@ -113,7 +118,7 @@ public class BeholderBossAI : MonoBehaviour
 
         if (_bossDamager.enemyCurrentHealth <= 0)
         {
-            KillBoss();
+            bossState = State.die;
         }
 
         switch (bossState)
@@ -142,6 +147,11 @@ public class BeholderBossAI : MonoBehaviour
             case State.LaserBeamAttack:
                 CastLaserBeam();
                 isBounceRoutineON = false;
+                break;
+
+            case State.die:
+                KillBoss();
+                _stopFacingTarget = true;
                 break;
         }
         _bossPosition = transform.position;
@@ -319,11 +329,15 @@ public class BeholderBossAI : MonoBehaviour
         isKillBeholderRoutine = true;
         _stopFloating = true;
         _bossSpriteRenderer.material = _bossStartingMaterial;
+        _killLaser = true;
+        transform.position = _arenaRoofTop.position;
         Instantiate(_deathLightPrefab, transform.position, Quaternion.identity);
+        _bossAudioSource.PlayOneShot(_deathAnimSound);
         _bossAnimator.SetTrigger("Die");
 
         yield return new WaitForSeconds(5.1f);
 
+        _bossAudioSource.PlayOneShot(_deathExplosionSound);
         Instantiate(_beholderBloodExplosion, transform.position, Quaternion.identity);
 
         Destroy(this.gameObject);

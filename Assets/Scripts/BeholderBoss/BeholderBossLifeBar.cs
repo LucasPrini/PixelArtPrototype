@@ -11,15 +11,15 @@ public class BeholderBossLifeBar : MonoBehaviour
     [SerializeField] GameObject _beholderBoss;
     EnemyDamager _bossDamager;
 
-    [SerializeField] GameObject _lifeTextOB;
-    TextMeshProUGUI _lifeTextMesh;
+    //[SerializeField] GameObject _lifeTextOB;
+    //TextMeshProUGUI _lifeTextMesh;
 
 
     private void Awake()
     {
         _bossLifeSlider = GetComponent<Slider>();
         _bossDamager = _beholderBoss.GetComponent<EnemyDamager>();
-        _lifeTextMesh = _lifeTextOB.GetComponent<TextMeshProUGUI>();
+        //_lifeTextMesh = _lifeTextOB.GetComponent<TextMeshProUGUI>();
     }
 
     // Start is called before the first frame update
@@ -34,10 +34,10 @@ public class BeholderBossLifeBar : MonoBehaviour
         if (_beholderBoss == null)
         {
             this.gameObject.SetActive(false);
-            _lifeTextOB.SetActive(false);
+            //_lifeTextOB.SetActive(false);
         }
 
         _bossLifeSlider.value = _bossDamager.enemyCurrentHealth;
-        _lifeTextMesh.SetText(_bossDamager.enemyCurrentHealth + "/" + _bossDamager.enemyMaxHealth);
+        //_lifeTextMesh.SetText(_bossDamager.enemyCurrentHealth + "/" + _bossDamager.enemyMaxHealth);
     }
 }
