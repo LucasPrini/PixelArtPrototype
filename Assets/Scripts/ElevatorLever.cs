@@ -11,6 +11,7 @@ public class ElevatorLever : MonoBehaviour
 
     [SerializeField] Sprite _deactivatedLeverSprite;
     [SerializeField] Sprite _activatedLeverSprite;
+    [SerializeField] GameObject _interactText;
 
     SpriteRenderer _leverSpriteRenderer;
 
@@ -20,6 +21,11 @@ public class ElevatorLever : MonoBehaviour
     {
         _leverSpriteRenderer = GetComponent<SpriteRenderer>();
         _leverAudioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        _interactText.SetActive(false);
     }
 
 
@@ -38,6 +44,15 @@ public class ElevatorLever : MonoBehaviour
         else
         {
             _leverSpriteRenderer.sprite = _deactivatedLeverSprite;
+        }
+
+        if (_playerInRange && isLeverActivated == false)
+        {
+            _interactText.SetActive(true);
+        }
+        else
+        {
+            _interactText.SetActive(false);
         }
     }
 
