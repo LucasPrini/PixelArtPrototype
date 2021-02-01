@@ -14,6 +14,7 @@ public class BeholderBossAI : MonoBehaviour
     }
 
 
+    Rigidbody2D _bossRigidbody2D;
     EnemyDamager _bossDamager;
     [SerializeField] GameObject _beholderBloodExplosion;
     [SerializeField] GameObject _deathLightPrefab;
@@ -79,11 +80,14 @@ public class BeholderBossAI : MonoBehaviour
 
     [SerializeField] AudioClip _deathAnimSound;
     [SerializeField] AudioClip _deathExplosionSound;
+    [SerializeField] GameObject _bossSpawnLight;
+    Vector2 _bossSpawnPos;
 
 
     private void Awake()
     {
         //_laserBeamLineRenderer = _laserBeamPrefab.GetComponent<LineRenderer>();
+        _bossRigidbody2D = GetComponent<Rigidbody2D>();
         _bossAudioSource = GetComponent<AudioSource>();
         _bossDamager = GetComponent<EnemyDamager>();
         _bossAnimator = GetComponent<Animator>();
@@ -110,14 +114,30 @@ public class BeholderBossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_stayInPos)
+        {
+            transform.position = _bossSpawnPos;
+            _bossRigidbody2D.velocity = Vector3.zero;
+        }
         if (_killLaser == true)
         {
+            _stayInPos = false;
             _laserBeamPrefab.SetActive(false);
             _bossHealthCanvas.SetActive(false);
+            for (int i = 0; i < 5; i++)
+            {
+                if (_particlesHolder[i] != null)
+                {
+                    Destroy(_particlesHolder[i]);
+                }
+
+
+            }
         }
 
         if (_bossDamager.enemyCurrentHealth <= 0)
         {
+
             bossState = State.die;
         }
 
@@ -132,6 +152,7 @@ public class BeholderBossAI : MonoBehaviour
 
             case State.BounceAttack:
                 _bossHealthCanvas.SetActive(true);
+                BounceOnPlayer();
                 if (isBounceRoutineON == false)
                 {
                     StartCoroutine(BounceOnPlayerRoutine());
@@ -140,11 +161,13 @@ public class BeholderBossAI : MonoBehaviour
                 break;
 
             case State.TentacleShotAttack:
+
                 TentacleShoot();
                 isLaserBeamRoutineOn = false;
                 break;
 
             case State.LaserBeamAttack:
+
                 CastLaserBeam();
                 isBounceRoutineON = false;
                 break;
@@ -164,7 +187,7 @@ public class BeholderBossAI : MonoBehaviour
         {
             FaceTarget();
         }
-        BounceOnPlayer();
+
 
 
 
@@ -217,8 +240,9 @@ public class BeholderBossAI : MonoBehaviour
 
     void RandomArenaSide()
     {
-        _arenaSide = Random.Range(1, 3);
-        if (_arenaSide == 1)
+        //_arenaSide = Random.Range(1, 3);
+        _arenaPosition = Random.Range(1, 3);
+        /*if (_arenaSide == 1)
         {
             //transform.position = Vector3.MoveTowards(this.transform.position, _arenaBottomRight.position, _chargeSpeed * Time.deltaTime);
             transform.position = _arenaBottomRight.position;
@@ -227,13 +251,18 @@ public class BeholderBossAI : MonoBehaviour
         {
             //transform.position = Vector3.MoveTowards(this.transform.position, _arenaBottomLeft.position, _chargeSpeed * Time.deltaTime);
             transform.position = _arenaBottomLeft.position;
-        }
+        }*/
     }
-
-    void RandomArenaPosition()
+    void ChooseArenaPos()
     {
         _arenaPosition = Random.Range(1, 5);
-        if (_arenaPosition == 1)
+
+
+    }
+    void RandomArenaPosition()
+    {
+
+        /*if (_arenaPosition == 1)
         {
             //transform.position = Vector3.MoveTowards(this.transform.position, _arenaBottomRight.position, _chargeSpeed * Time.deltaTime);
             transform.position = _arenaBottomRight.position;
@@ -252,14 +281,45 @@ public class BeholderBossAI : MonoBehaviour
         {
             //transform.position = Vector3.MoveTowards(this.transform.position, _arenaBottomLeft.position, _chargeSpeed * Time.deltaTime);
             transform.position = _arenaCenter.position;
+        }*/
+
+        if (_arenaPosition == 1)
+        {
+            //transform.position = Vector3.MoveTowards(this.transform.position, _arenaBottomRight.position, _chargeSpeed * Time.deltaTime);
+            _bossSpawnPos = _arenaBottomRight.position;
+        }
+        else if (_arenaPosition == 2)
+        {
+            //transform.position = Vector3.MoveTowards(this.transform.position, _arenaBottomLeft.position, _chargeSpeed * Time.deltaTime);
+            _bossSpawnPos = _arenaBottomLeft.position;
+        }
+        else if (_arenaPosition == 3)
+        {
+            //transform.position = Vector3.MoveTowards(this.transform.position, _arenaBottomLeft.position, _chargeSpeed * Time.deltaTime);
+            _bossSpawnPos = _arenaRoofTop.position;
+        }
+        else if (_arenaPosition == 4)
+        {
+            //transform.position = Vector3.MoveTowards(this.transform.position, _arenaBottomLeft.position, _chargeSpeed * Time.deltaTime);
+            _bossSpawnPos = _arenaCenter.position;
         }
     }
 
     [SerializeField] bool isLaserBeamRoutineOn;
+    [SerializeField] bool _stayInPos;
     IEnumerator LaserBeamRoutine()
     {
         isLaserBeamRoutineOn = true;
+        //ChooseArenaPos();
         RandomArenaSide();
+        RandomArenaPosition();
+        var bossSpawn = Instantiate(_bossSpawnLight, _bossSpawnPos, Quaternion.identity);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(bossSpawn);
+        //RandomArenaSide();
+        transform.position = _bossSpawnPos;
+        _stayInPos = true;
+
         yield return new WaitForSeconds(2);
         _stopFloating = true;
 
@@ -285,6 +345,7 @@ public class BeholderBossAI : MonoBehaviour
         }
         yield return new WaitForSeconds(0.8f);
         _stopFacingTarget = false;
+        _stayInPos = false;
 
         bossState = State.BounceAttack;
 
@@ -315,6 +376,7 @@ public class BeholderBossAI : MonoBehaviour
 
     public void KillBoss()
     {
+        _stayInPos = false;
         Destroy(_bossDamager);
         if (isKillBeholderRoutine == false)
         {
@@ -347,9 +409,9 @@ public class BeholderBossAI : MonoBehaviour
     IEnumerator BounceOnPlayerRoutine()
     {
         isBounceRoutineON = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         _chargeOnPlayer = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.1f);
         _chargeOnPlayer = false;
         _currentBossPos = this.transform.position;
         _prepareBounceAttack = true;
@@ -391,7 +453,13 @@ public class BeholderBossAI : MonoBehaviour
     {
         isTentacleShotRoutineON = true;
         yield return new WaitForSeconds(1);
+        RandomArenaSide();
         RandomArenaPosition();
+        //RandomArenaPosition();
+        var bossSpawn = Instantiate(_bossSpawnLight, _bossSpawnPos, Quaternion.identity);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(bossSpawn);
+        transform.position = _bossSpawnPos;
 
         yield return new WaitForSeconds(1);
         ShootTentacleShot(_tentacleEyes[0]);

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7661376862989377594}
   m_Layer: 0
   m_Name: TentacleShotProj
-  m_TagString: Enemy
+  m_TagString: DamagingObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -64,7 +64,6 @@ Transform:
   m_LocalPosition: {x: -12.19, y: -20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3928841014548549441}
   - {fileID: 3928841015247764087}
   - {fileID: 3928841015647081682}
   - {fileID: 3928841014018635296}
@@ -134,7 +133,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10000
+  m_Mass: 40000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -168,10 +167,32 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.91943264, y: -0.23807716}
-      - {x: 0.20700073, y: -0.2700348}
-      - {x: -0.35352135, y: -0.47304153}
-      - {x: -0.9219675, y: -0.20402908}
+    - - {x: 1.3702183, y: 0.14756203}
+      - {x: 0.93849564, y: 0.79894066}
+      - {x: 1.0630417, y: 0.1651802}
+      - {x: 1.0127115, y: -0.24473953}
+      - {x: 0.9607363, y: -0.17928886}
+      - {x: 0.44019794, y: 0.3829174}
+      - {x: 0.5009661, y: 0.9727192}
+      - {x: 0.2760706, y: 1.2303162}
+      - {x: -0.01976204, y: 1.1934929}
+      - {x: 0.30085278, y: 0.81920624}
+      - {x: 0.17933941, y: 0.4339943}
+      - {x: -0.28023052, y: 0.43309593}
+      - {x: -0.5486736, y: 0.30276108}
+      - {x: -0.49173737, y: 0.8585205}
+      - {x: -0.69666386, y: 1.0582924}
+      - {x: -0.9104223, y: 1.0956154}
+      - {x: -0.75088406, y: 0.85004044}
+      - {x: -0.74796677, y: 0.29717064}
+      - {x: -0.64774036, y: 0.2277031}
+      - {x: -0.89598083, y: -0.05565834}
+      - {x: -1.1143007, y: 0.42081833}
+      - {x: -1.2730417, y: 0.60082245}
+      - {x: -1.5482688, y: 0.55552864}
+      - {x: -1.2109709, y: 0.26259232}
+      - {x: -1.1846576, y: 0.07250023}
+      - {x: -1.0805068, y: -0.008377075}
       - {x: -1.0166082, y: -0.49858665}
       - {x: -0.95510864, y: -0.87706566}
       - {x: -0.6982708, y: -1.2852707}
@@ -201,7 +222,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   hurtMaterial: {fileID: 2100000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
   _bloodExplosionPrefab: {fileID: 2252954067278078127, guid: 24fd678237d666f4bb3087d70dd996d2, type: 3}
-  enemyMaxHealth: 8000
+  enemyMaxHealth: 30000
   enemyCurrentHealth: 0
 --- !u!82 &3928841014006808564
 AudioSource:
@@ -311,6 +332,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10559d6d68dc064a9cb2934521c7424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _beholderBloodExplosion: {fileID: 6822092387443684220, guid: 23782df1c5d8a4647841f20eaf9fec96, type: 3}
+  _deathLightPrefab: {fileID: 4292202033547001441, guid: f934331a95724cd42931f5e0c07aa23c, type: 3}
+  bossState: 0
+  _killLaser: 0
+  _bossHealthCanvas: {fileID: 0}
   _target: {fileID: 0}
   _tentacleEyes:
   - {fileID: 3928841013635664925}
@@ -320,11 +346,33 @@ MonoBehaviour:
   _tentacleShotPrefab: {fileID: 836383425139159903, guid: 9a3094e6e5cfaf94ea8f2360703db154, type: 3}
   _arenaCenter: {fileID: 0}
   _arenaRoofTop: {fileID: 0}
+  _arenaBottomLeft: {fileID: 0}
+  _arenaBottomRight: {fileID: 0}
   _chargeSpeed: 10
+  _virtualCam: {fileID: 0}
   _floatingSpeed: 3
-  _floatingHeight: 0.02
+  _floatingHeight: 0.005
   _mainEyeTransform: {fileID: 3928841015647081682}
-  _laserBeamPrefab: {fileID: 351676558155187344, guid: 13cbadacac9e9764c82ec2700b71ba93, type: 3}
+  _laserBeamPrefab: {fileID: 0}
+  _laserParticlesPrefab: {fileID: 4038740551731486032, guid: 311497de12cd95f48be7e40b8c026cf7, type: 3}
+  _particlesHolder:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _arenaSide: 0
+  _laserCharge: {fileID: 8300000, guid: 8be02ec6e8fb2b5489fccfb4d7f81eeb, type: 3}
+  _laserRelease: {fileID: 8300000, guid: 74dfde20aa766104787a3ef68cf5b366, type: 3}
+  _tentacleShotSound: {fileID: 8300000, guid: 3c3e01c2ebf927242bc45addb3b00139, type: 3}
+  _boundSound: {fileID: 8300000, guid: f8e568007aaef0d49891debae4cb719c, type: 3}
+  _deathAnimSound: {fileID: 8300000, guid: 658e890e120689f4384be1ee0a5f7fc7, type: 3}
+  _deathExplosionSound: {fileID: 8300000, guid: 9d973379dcbff554f905e0fe958a5958, type: 3}
+  _bossSpawnLight: {fileID: 4913605985082569216, guid: 6836debd805f1684d858e62ec878fe76, type: 3}
+  isLaserBeamRoutineOn: 0
+  _stayInPos: 0
+  isBounceRoutineON: 0
+  isTentacleShotRoutineON: 0
 --- !u!95 &3928841014006808567
 Animator:
   serializedVersion: 3
@@ -372,7 +420,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3928841014006808563}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3928841014144408579
 GameObject:
@@ -404,53 +452,6 @@ Transform:
   m_Father: {fileID: 3928841015247764087}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3928841014548549440
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3928841014548549441}
-  - component: {fileID: 3928841014548549442}
-  m_Layer: 0
-  m_Name: BrainCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3928841014548549441
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3928841014548549440}
-  m_LocalRotation: {x: 0, y: 0, z: -0.41580465, w: 0.909454}
-  m_LocalPosition: {x: -0.048, y: 0.103, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3928841014006808563}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -49.14}
---- !u!70 &3928841014548549442
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3928841014548549440}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.040090267, y: 0.014020416}
-  m_Size: {x: 0.58017975, y: 0.81677943}
-  m_Direction: 0
 --- !u!1 &3928841015056053871
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +514,7 @@ Transform:
   - {fileID: 3928841015056053856}
   - {fileID: 3928841015329856021}
   m_Father: {fileID: 3928841014006808563}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3928841015329856020
 GameObject:
@@ -573,5 +574,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3928841014006808563}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

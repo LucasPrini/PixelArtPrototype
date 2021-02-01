@@ -15,7 +15,11 @@ public class TentacleShotProj : MonoBehaviour
     }
     void Start()
     {
-        _targetCurrentPos = _target.transform.position;
+        if (_target != null)
+        {
+            _targetCurrentPos = _target.transform.position;
+        }
+
     }
 
     // Update is called once per frame
