@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     AudioSource _audioSource;
     [SerializeField] AudioClip _jumpSound;
     [SerializeField] int _airJumps;
+    public bool jumping;
 
     float _earlyJumpCountdown;
 
@@ -130,11 +131,14 @@ public class PlayerController : MonoBehaviour
 
         if (_earlyJumpCountdown > 0 && _canJump)
         {
+            jumping = true;
+            canMove = true;
             _playerActions.isDashing = false;
             playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpHeight);
             _animator.SetTrigger("jump");
             _audioSource.PlayOneShot(_jumpSound);
             _jumpCounter += 1;
+            jumping = false;
         }
     }
 

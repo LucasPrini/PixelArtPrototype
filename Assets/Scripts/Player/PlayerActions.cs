@@ -113,7 +113,11 @@ public class PlayerActions : MonoBehaviour
     {
         isShootingRoutineOn = true;
 
-        _playerController.canMove = false;
+        if (!_playerController.jumping)
+        {
+            _playerController.canMove = false;
+        }
+
         _playerController.FaceMouseDirection();
 
         if (isCriticalHit || isBasicHitCrit)

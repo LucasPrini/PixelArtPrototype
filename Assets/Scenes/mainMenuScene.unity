@@ -1554,33 +1554,33 @@ MonoBehaviour:
     Jump - Space
 
     Dash/Dodge
-    - Left-Shift or Left-Control
+    - Left-Shift or Left-Control (Invulnerable while dashing)
 
     Grenade - G
 
-    Drop Down Platforms - S
+    Drop
+    Down Platforms - S
 
 
 
 
 
-    -
-    Every third shot is a critical shot, unless you get hit, this you reset the counter.
+    - Every third shot is a critical shot, unless you
+    get hit, this you reset the counter.
 
-    -
-    Every landed crit gives you 10 CP, you gain 10% critical chance every 100 CP
+    - Every landed crit gives you 10 CP,
+    you gain 10% critical chance every 100 CP
 
-    -
-    You loose all your CP and the critical chance acumulated if you get hit
+    - You loose all your CP and the
+    critical chance acumulated if you get hit
 
-    -
-    Your grenades costs 30 Resources to throw
+    - Your grenades costs 30 Resources
+    to throw
 
-    - Critical Multiplier and Maximum
-    Resources can be upgraded with pickups
+    - Critical Multiplier and Maximum Resources can be upgraded with
+    pickups
 
-    - Every critical hit landed restores
-    5 resources
+    - Every critical hit landed restores 5 resources
 
 '
   m_isRightToLeft: 0
@@ -1720,7 +1720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1562673101
 MonoBehaviour:
   m_ObjectHideFlags: 0

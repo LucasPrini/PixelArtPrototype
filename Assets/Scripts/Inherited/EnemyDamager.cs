@@ -70,11 +70,11 @@ public class EnemyDamager : MonoBehaviour
             floatingDamage.GetComponent<FloatingDamage>().textMesh.fontSize = 3;
             _comboPointsManager.playerComboPoints += 10f;
             _playerActions.comboPointsCounter += 10f;
-            if (_playerResources.maxResources - _playerResources.currentResources >= 10f)
+            if (_playerResources.maxResources - _playerResources.currentResources >= 5f)
             {
-                _playerResources.currentResources += 10;
+                _playerResources.currentResources += 5;
             }
-            else if (_playerResources.maxResources - _playerResources.currentResources < 10)
+            else if (_playerResources.maxResources - _playerResources.currentResources < 5)
             {
                 _playerResources.currentResources += _playerResources.maxResources - _playerResources.currentResources;
             }
