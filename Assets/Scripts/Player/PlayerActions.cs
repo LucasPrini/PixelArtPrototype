@@ -186,7 +186,7 @@ public class PlayerActions : MonoBehaviour
             _criticalChance = 0;
         }
 
-        if (comboPointsCounter >= _pointsToIncreaseCrit)
+        if (comboPointsCounter >= _pointsToIncreaseCrit && _criticalChance < 100)
         {
             _criticalChance += 10f;
             Vector3 critTextOffSet = new Vector3(0, 200f, 0);

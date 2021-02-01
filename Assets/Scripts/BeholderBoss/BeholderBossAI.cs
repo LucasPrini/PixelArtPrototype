@@ -173,6 +173,7 @@ public class BeholderBossAI : MonoBehaviour
                 break;
 
             case State.die:
+                _stayInPos = false;
                 KillBoss();
                 _stopFacingTarget = true;
                 break;

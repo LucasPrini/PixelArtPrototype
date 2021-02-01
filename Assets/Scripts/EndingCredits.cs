@@ -31,7 +31,8 @@ public class EndingCredits : MonoBehaviour
     {
         isCreditsRoutineOn = true;
         yield return new WaitForSeconds(3);
-        Time.timeScale = 0;
+
         _creditsCanvas.SetActive(true);
+        Time.timeScale = 0;
     }
 }

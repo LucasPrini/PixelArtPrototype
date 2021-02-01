@@ -608,7 +608,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'A Game made by : BodeDev
+  m_text: '         A Game made by : BodeDev
 
 
 '
@@ -848,6 +848,8 @@ GameObject:
   - component: {fileID: 8491579484154124700}
   - component: {fileID: 8491579484154124696}
   - component: {fileID: 1162998218}
+  - component: {fileID: 110690144}
+  - component: {fileID: 110690143}
   m_Layer: 5
   m_Name: CreditsCanvas
   m_TagString: Untagged
@@ -948,7 +950,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ff11e83283e0ab946b3a9547d65f64a7, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -967,6 +969,115 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77674522038df2c45b858ccf046cd17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &110690144
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491579484154124701}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &110690143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491579484154124701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bacbe12849f0fbc47bc3cc46e27223f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creditsAudio: {fileID: 8300000, guid: a49c4a0da79f2344c87775cc52e56519, type: 3}
 --- !u!1 &8491579484164647308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -181}
+  m_AnchoredPosition: {x: 0, y: -169.08}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8491579484164647305
@@ -1035,13 +1146,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Scripts : BodeDev\nArt/Animation : BodeDev\n\nI'm a brazillian programmer,
     26 years old, passionate about games. I'm trying to start a career as a Game
-    Developer, and i'm actively looking for jobs.\n\nThis game is my first finished
-    project, it was a lot of work, i've wrote every single line of code from scratch,
-    drawn and animated all the assets, so if you liked, feel free to follow me on
-    Twitter to see more ongoing projects and contact me.\n\n \n\n\t\t\nThis short
-    game was made during a 34Days period. i started this project to learn how to
-    draw and animate pixel art. After 4 days i've started the project, the #FFSjam
-    opened up and i submited to it with this project.\n\n"
+    Developer and actively looking for jobs.\n\nThis game is my first finished project,
+    it was a lot of work, i've wrote every single line of code from scratch, drawn
+    and animated all the assets, so if you liked, feel free to follow me on Twitter
+    to see more ongoing projects and contact me.\n\n \n\n\t\t\nThis short game was
+    made during a 34Days period. i started this project to learn how to draw and
+    animate pixel art. After 4 days i've started the project, the #FFSjam opened
+    up and i submited to it with this project.\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 06bff197bcdd3194fafc7736d93cada1, type: 2}

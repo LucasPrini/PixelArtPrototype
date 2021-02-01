@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class BossLevelSoundtrack : MonoBehaviour
 {
+    GameObject _beholderBoss;
     AudioSource _levelAudioSource;
     [SerializeField] AudioClip _introSound;
     [SerializeField] AudioClip _bossFightSound;
     private void Awake()
     {
         _levelAudioSource = GetComponent<AudioSource>();
+        _beholderBoss = GameObject.Find("BeholderBoss");
+    }
+
+    private void Update()
+    {
+        if (_beholderBoss == null)
+        {
+            _levelAudioSource.Stop();
+        }
     }
 
     public void PlayIntroSound()
     {
+
         _levelAudioSource.PlayOneShot(_introSound);
     }
 
